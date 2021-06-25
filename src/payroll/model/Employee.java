@@ -10,7 +10,6 @@ public abstract class Employee {
 
     private Syndicate syndicate;
 
-
     public Employee(){
 
     }
