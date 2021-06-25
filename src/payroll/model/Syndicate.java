@@ -1,5 +1,7 @@
 package payroll.model;
 
+import java.util.ArrayList;
+
 public class Syndicate {
 
     private int id;
@@ -9,6 +11,8 @@ public class Syndicate {
     private boolean active;
 
     private Double tax;
+
+    private ArrayList<ServiceTax> serviceTaxes;
 
     public Syndicate(){
 
@@ -53,11 +57,20 @@ public class Syndicate {
         this.tax = tax;
     }
 
+    public ArrayList<ServiceTax> getServiceTaxes() {
+        return serviceTaxes;
+    }
+
+    public void setServiceTaxes(ArrayList<ServiceTax> serviceTaxes) {
+        this.serviceTaxes = serviceTaxes;
+    }
+
     @Override
     public String toString() {
         String str = "\nId no sindicato: " + getId();
         str += "\nMembro ativo do sindicato: " + getActive();
         str += "\nTaxa do sindicato: " + getTax();
+        str += "\nTaxas de serviço: {" + getServiceTaxes() + "}";
         return str;
     }
 

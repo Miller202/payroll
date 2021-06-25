@@ -1,10 +1,14 @@
 package payroll.model;
 
+import java.util.ArrayList;
+
 public class Commissioned extends Employee{
 
     private Double fixedSalary;
 
     private Double commission;
+
+    private ArrayList<SaleResult> saleResults;
 
     public Commissioned(){
 
@@ -13,6 +17,7 @@ public class Commissioned extends Employee{
     public Commissioned(Double fixedSalary, Double commission){
         this.fixedSalary = fixedSalary;
         this.commission = commission;
+        this.saleResults = new ArrayList<SaleResult>();
     }
 
     public Commissioned(int id, String name, String address, Syndicate syndicate,
@@ -20,6 +25,7 @@ public class Commissioned extends Employee{
         super(id, name, address, syndicate);
         this.fixedSalary = fixedSalary;
         this.commission = commission;
+        this.saleResults = new ArrayList<SaleResult>();
     }
 
     public Double getFixedSalary() {
@@ -38,11 +44,20 @@ public class Commissioned extends Employee{
         this.commission = commission;
     }
 
+    public ArrayList<SaleResult> getSaleResults() {
+        return saleResults;
+    }
+
+    public void setSaleResults(ArrayList<SaleResult> saleResults) {
+        this.saleResults = saleResults;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "Comissionado{" +
-                "Salário fixo=" + fixedSalary +
-                ", Comissão=" + commission +
+                " Salário fixo: " + getFixedSalary() +
+                ", Comissão: " + getCommission() +
+                ", Resultado das vendas: " + getSaleResults() +
                 '}';
     }
 }
