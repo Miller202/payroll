@@ -2,6 +2,7 @@ package payroll.app;
 
 import payroll.model.employee.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -21,7 +22,7 @@ public class EmployeeCrud {
         String address = input.nextLine();
 
         System.out.println("Qual o tipo de empregado?");
-        System.out.printf("[1] - Horista, [2] - Salariado, [3] - Comissionado\n");
+        System.out.println("[1] - Horista, [2] - Salariado, [3] - Comissionado\n");
         answer = input.nextInt();
 
         if(answer == 1){
@@ -68,6 +69,31 @@ public class EmployeeCrud {
         System.out.println(employee.toString());
 
         return employee;
+    }
+
+    public static void removeEmployee(Scanner input, ArrayList<Employee> Employees){
+        System.out.println("Digite o ID do empregado que deve ser removido:");
+        String id = input.nextLine();
+
+        Employee employeeToRemove = null;
+        for(Employee employee : Employees){
+            if(employee.getId().toString().equals(id)){
+                employeeToRemove = employee;
+            }
+        }
+        Employees.remove(employeeToRemove);
+        System.out.println("Empregado removido com sucesso!");
+    }
+
+    public static void listEmployees(ArrayList<Employee> Employees) {
+        int i = 1;
+        System.out.println("\n\nListagem de empregados");
+        for (Employee employee : Employees) {
+            System.out.println("\nEmpregado #" + i);
+            System.out.println(employee.toString());
+            System.out.println("\n");
+            i++;
+        }
     }
 
 }

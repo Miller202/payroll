@@ -71,7 +71,6 @@ public class Syndicate {
     @Override
     public String toString() {
         String str = "\nId no sindicato: " + getId();
-        str += "\nId no sistema: " + getEmployeeId();
         str += "\nMembro ativo do sindicato: " + getActive();
         str += "\nTaxa do sindicato: " + getTax();
         str += "\nTaxas de serviço: {" + getServiceTaxes() + "}";

@@ -60,7 +60,6 @@ public abstract class Employee {
         String str = "Id no sistema: " + getId();
         str += "\nNome: " + getName();
         str += "\nEndereço: " + getAddress();
-        str += "\n";
         if(getSyndicate() != null){
             str += getSyndicate().toString();
         }else{
