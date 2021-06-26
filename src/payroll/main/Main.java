@@ -17,12 +17,13 @@ public class Main {
         int option = 0;
 
         while(option != 11){
-            System.out.println("Folha de pagamento");
+            System.out.println("\nFolha de pagamento");
             System.out.println("Escolha uma das opções: ");
             System.out.println("[1] - Cadastrar Empregado");
             System.out.println("[11] - Sair\n");
 
             option = input.nextInt();
+            input.nextLine();
 
             if(option == 1){
                 Employees.add(EmployeeCrud.register(input));
