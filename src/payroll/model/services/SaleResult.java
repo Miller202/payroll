@@ -1,18 +1,15 @@
-package payroll.model;
+package payroll.model.services;
 
 import java.time.LocalDate;
 
-public class ServiceTax {
+public class SaleResult {
 
     public Double value;
 
     public LocalDate date;
 
-    public ServiceTax(){
 
-    }
-
-    public ServiceTax(Double value, LocalDate date) {
+    public SaleResult(Double value, LocalDate date) {
         this.value = value;
         this.date = date;
     }

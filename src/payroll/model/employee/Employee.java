@@ -1,8 +1,10 @@
-package payroll.model;
+package payroll.model.employee;
+
+import java.util.UUID;
 
 public abstract class Employee {
 
-    private int id;
+    private UUID id;
 
     private String name;
 
@@ -14,18 +16,18 @@ public abstract class Employee {
 
     }
 
-    public Employee(int id, String name, String address, Syndicate syndicate) {
+    public Employee(UUID id, String name, String address, Syndicate syndicate) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.syndicate = syndicate;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -58,6 +60,7 @@ public abstract class Employee {
         String str = "Id no sistema: " + getId();
         str += "\nNome: " + getName();
         str += "\nEndereço: " + getAddress();
+        str += "\n";
         if(getSyndicate() != null){
             str += getSyndicate().toString();
         }else{

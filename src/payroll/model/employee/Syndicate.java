@@ -1,12 +1,15 @@
-package payroll.model;
+package payroll.model.employee;
+
+import payroll.model.services.ServiceTax;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Syndicate {
 
-    private int id;
+    private UUID id;
 
-    private int EmployeeId;
+    private UUID EmployeeId;
 
     private boolean active;
 
@@ -18,26 +21,26 @@ public class Syndicate {
 
     }
 
-    public Syndicate(int id, int EmployeeId, boolean active, Double tax) {
+    public Syndicate(UUID id, UUID EmployeeId, boolean active, Double tax) {
         this.id = id;
         this.EmployeeId = EmployeeId;
         this.active = active;
         this.tax = tax;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public int getEmployeeId() {
+    public UUID getEmployeeId() {
         return EmployeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(UUID employeeId) {
         EmployeeId = employeeId;
     }
 
@@ -68,6 +71,7 @@ public class Syndicate {
     @Override
     public String toString() {
         String str = "\nId no sindicato: " + getId();
+        str += "\nId no sistema: " + getEmployeeId();
         str += "\nMembro ativo do sindicato: " + getActive();
         str += "\nTaxa do sindicato: " + getTax();
         str += "\nTaxas de serviço: {" + getServiceTaxes() + "}";

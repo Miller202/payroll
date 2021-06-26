@@ -1,7 +1,7 @@
 package payroll.main;
 
-import payroll.app.EmployeeMenu;
-import payroll.model.Employee;
+import payroll.app.EmployeeCrud;
+import payroll.model.employee.Employee;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +15,7 @@ public class Main {
 
         ArrayList<Employee> Employees = new ArrayList<Employee>();
 
-        Employees.add(EmployeeMenu.register(input, Employees));
+        Employees.add(EmployeeCrud.register(input));
     }
 
 }

@@ -1,8 +1,11 @@
-package payroll.model;
+package payroll.model.employee;
+
+import payroll.model.services.SaleResult;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
-public class Commissioned extends Employee{
+public class Commissioned extends Employee {
 
     private Double fixedSalary;
 
@@ -20,7 +23,7 @@ public class Commissioned extends Employee{
         this.saleResults = new ArrayList<SaleResult>();
     }
 
-    public Commissioned(int id, String name, String address, Syndicate syndicate,
+    public Commissioned(UUID id, String name, String address, Syndicate syndicate,
                         Double fixedSalary, Double commission) {
         super(id, name, address, syndicate);
         this.fixedSalary = fixedSalary;

@@ -1,6 +1,9 @@
-package payroll.model;
+package payroll.model.employee;
+
+import payroll.model.services.TimeCard;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Hourly extends Employee {
 
@@ -17,7 +20,7 @@ public class Hourly extends Employee {
         this.timeCards = new ArrayList<TimeCard>();
     }
 
-    public Hourly(int id, String name, String address, Syndicate syndicate, Double hourlySalary) {
+    public Hourly(UUID id, String name, String address, Syndicate syndicate, Double hourlySalary) {
         super(id, name, address, syndicate);
         HourlySalary = hourlySalary;
         this.timeCards = new ArrayList<TimeCard>();
