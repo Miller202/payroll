@@ -21,7 +21,7 @@ public class EmployeeCrud {
         String address = input.nextLine();
 
         System.out.println("Qual o tipo de empregado?");
-        System.out.printf("[1] Horista\n[2] Salariado\n[3] Comissionado\n");
+        System.out.printf("[1] - Horista, [2] - Salariado, [3] - Comissionado\n");
         answer = input.nextInt();
 
         if(answer == 1){
@@ -51,7 +51,7 @@ public class EmployeeCrud {
             employee = new Salaried(id, name, address, syndicate, salary);
         }
 
-        System.out.println("O empregado é membro do sindicato? (1 - Sim, 2 - Não): ");
+        System.out.println("O empregado é membro do sindicato? ([1] - Sim, [2] - Não): ");
         int aux = input.nextInt();
 
         if (aux == 1){

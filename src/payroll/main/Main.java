@@ -9,13 +9,25 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args){
-        System.out.println("Folha de pagamento");
 
         Scanner input = new Scanner(System.in);
 
         ArrayList<Employee> Employees = new ArrayList<Employee>();
 
-        Employees.add(EmployeeCrud.register(input));
+        int option = 0;
+
+        while(option != 11){
+            System.out.println("Folha de pagamento");
+            System.out.println("Escolha uma das opções: ");
+            System.out.println("[1] - Cadastrar Empregado");
+            System.out.println("[11] - Sair\n");
+
+            option = input.nextInt();
+
+            if(option == 1){
+                Employees.add(EmployeeCrud.register(input));
+            }
+        }
     }
 
 }
