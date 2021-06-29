@@ -8,10 +8,6 @@ public class ServiceTax {
 
     public LocalDate date;
 
-    public ServiceTax(){
-
-    }
-
     public ServiceTax(Double value, LocalDate date) {
         this.value = value;
         this.date = date;
