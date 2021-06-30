@@ -1,5 +1,7 @@
 package payroll.model.employee;
 
+import payroll.model.payments.PaymentData;
+
 import java.util.UUID;
 
 public class Salaried extends Employee {
@@ -14,8 +16,9 @@ public class Salaried extends Employee {
         this.salary = salary;
     }
 
-    public Salaried(UUID id, String name, String address, Syndicate syndicate, Double salary) {
-        super(id, name, address, syndicate);
+    public Salaried(UUID id, String name, String address, Syndicate syndicate,
+                    PaymentData paymentData, Double salary) {
+        super(id, name, address, syndicate, paymentData);
         this.salary = salary;
     }
 

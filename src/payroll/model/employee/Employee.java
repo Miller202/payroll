@@ -1,5 +1,7 @@
 package payroll.model.employee;
 
+import payroll.model.payments.PaymentData;
+
 import java.util.UUID;
 
 public abstract class Employee {
@@ -12,15 +14,18 @@ public abstract class Employee {
 
     private Syndicate syndicate;
 
+    private PaymentData paymentData;
+
     public Employee(){
 
     }
 
-    public Employee(UUID id, String name, String address, Syndicate syndicate) {
+    public Employee(UUID id, String name, String address, Syndicate syndicate, PaymentData paymentData) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.syndicate = syndicate;
+        this.paymentData = paymentData;
     }
 
     public UUID getId() {
@@ -55,6 +60,14 @@ public abstract class Employee {
         this.syndicate = syndicate;
     }
 
+    public PaymentData getPaymentData() {
+        return paymentData;
+    }
+
+    public void setPaymentData(PaymentData paymentData) {
+        this.paymentData = paymentData;
+    }
+
     @Override
     public String toString() {
         String str = "Id no sistema: " + getId();
@@ -65,6 +78,7 @@ public abstract class Employee {
         }else{
             str += "Não é membro do sindicato";
         }
+        str += "\nDados de pagamento:" + getPaymentData().toString();
         return str;
     }
 

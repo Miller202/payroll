@@ -1,5 +1,6 @@
 package payroll.model.employee;
 
+import payroll.model.payments.PaymentData;
 import payroll.model.services.SaleResult;
 
 import java.util.ArrayList;
@@ -23,9 +24,9 @@ public class Commissioned extends Employee {
         this.saleResults = new ArrayList<SaleResult>();
     }
 
-    public Commissioned(UUID id, String name, String address, Syndicate syndicate,
+    public Commissioned(UUID id, String name, String address, Syndicate syndicate, PaymentData paymentData,
                         Double fixedSalary, Double commission) {
-        super(id, name, address, syndicate);
+        super(id, name, address, syndicate, paymentData);
         this.fixedSalary = fixedSalary;
         this.commission = commission;
         this.saleResults = new ArrayList<SaleResult>();
