@@ -42,4 +42,12 @@ public class TimeCard {
         this.timeOut = timeOut;
     }
 
+    @Override
+    public String toString() {
+        return "Cartão de ponto{" +
+                "data: " + getDate() +
+                ", entrada: " + getTimeEntry() +
+                ", saída: " + getTimeOut() +
+                '}';
+    }
 }

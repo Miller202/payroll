@@ -1,6 +1,7 @@
 package payroll.main;
 
 import payroll.app.EmployeeCrud;
+import payroll.app.ServicesMenu;
 import payroll.model.employee.Employee;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class Main {
             System.out.println("[1] - Cadastrar empregado");
             System.out.println("[2] - Remover empregado");
             System.out.println("[3] - Listar empregados");
+            System.out.println("[4] - Lançar cartão de ponto");
+
             System.out.println("[11] - Sair\n");
 
             option = input.nextInt();
@@ -35,6 +38,9 @@ public class Main {
             }
             else if(option == 3){
                 EmployeeCrud.listEmployees(Employees);
+            }
+            else if(option == 4){
+                ServicesMenu.postTimeCard(input, Employees);
             }
         }
     }

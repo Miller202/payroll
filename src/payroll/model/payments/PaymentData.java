@@ -66,7 +66,7 @@ public class PaymentData {
 
     @Override
     public String toString() {
-        return "Dados de pagamento{" +
+        return " {" +
                 "Banco: " + getBank() +
                 ", Agencia: " + getAgency() +
                 ", Conta: " + getAccount() +
