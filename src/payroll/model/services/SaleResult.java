@@ -33,7 +33,7 @@ public class SaleResult {
     @Override
     public String toString() {
         return " Resultado da venda {" +
-                "valor: " + getValue() +
+                "valor da venda: " + getValue() +
                 ", data: " + getDate() +
                 '}' + "\n";
     }

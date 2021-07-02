@@ -29,4 +29,11 @@ public class ServiceTax {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return " Taxa de serviço{" +
+                " valor da taxa: " + getValue() +
+                ", data: " + getDate() +
+                '}';
+    }
 }

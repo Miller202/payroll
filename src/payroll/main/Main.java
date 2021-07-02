@@ -25,6 +25,7 @@ public class Main {
             System.out.println("[3] - Listar empregados");
             System.out.println("[4] - Lançar cartão de ponto");
             System.out.println("[5] - Lançar resultado de venda");
+            System.out.println("[6] - Lançar taxa de serviço");
 
             System.out.println("[11] - Sair\n");
 
@@ -45,6 +46,9 @@ public class Main {
             }
             else if(option == 5){
                 ServicesMenu.postSaleResult(input, Employees);
+            }
+            else if(option == 6){
+                ServicesMenu.postServiceTax(input, Employees);
             }
         }
     }

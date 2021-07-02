@@ -4,6 +4,7 @@ import payroll.model.employee.Commissioned;
 import payroll.model.employee.Employee;
 import payroll.model.employee.Hourly;
 import payroll.model.services.SaleResult;
+import payroll.model.services.ServiceTax;
 import payroll.model.services.TimeCard;
 
 import java.time.LocalDate;
@@ -80,6 +81,9 @@ public class ServicesMenu {
         if(employeeToPost == null){
             System.out.println("Empregado não encontrado na lista de Comissionados!");
         }else{
+            System.out.println("Digite o valor da venda:");
+            Double value = input.nextDouble();
+
             System.out.println("Digite o dia (número):");
             int day = input.nextInt();
             System.out.println("Digite o mês (número):");
@@ -89,12 +93,45 @@ public class ServicesMenu {
             input.nextLine();
             LocalDate date = LocalDate.of(year, month, day);
 
-            System.out.println("Digite o valor da venda:");
-            Double value = input.nextDouble();
-
             SaleResult saleResult =  new SaleResult(value, date);
             employeeToPost.getSaleResults().add(saleResult);
             System.out.println("Resultado da venda registrado!");
         }
     }
+
+    public static void postServiceTax(Scanner input, ArrayList<Employee> Employees){
+        System.out.println("Digite o ID do empregado:");
+        String id = input.nextLine();
+
+        Predicate<Employee> empFilter = employee -> employee.getSyndicate() != null && employee.getSyndicate().isActive();
+        ArrayList<Employee> syndicateList = Employees.stream().filter(empFilter).
+                collect(Collectors.toCollection(ArrayList::new));
+
+        Employee employeeToPost = null;
+        for(Employee employee : syndicateList){
+            if(employee.getId().toString().equals(id)){
+                employeeToPost = (Employee) employee;
+            }
+        }
+
+        if(employeeToPost == null){
+            System.out.println("Empregado não pertence ao sindicato!");
+        }else{
+            System.out.println("Digite o valor da taxa de serviço:");
+            Double value = input.nextDouble();
+
+            System.out.println("Digite o dia (número):");
+            int day = input.nextInt();
+            System.out.println("Digite o mês (número):");
+            int month = input.nextInt();
+            System.out.println("Digite o ano:");
+            int year = input.nextInt();
+            input.nextLine();
+            LocalDate date = LocalDate.of(year, month, day);
+
+            ServiceTax serviceTax = new ServiceTax(value, date);
+            employeeToPost.getSyndicate().getServiceTaxes().add(serviceTax);
+        }
+    }
+
 }

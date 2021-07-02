@@ -44,7 +44,7 @@ public class TimeCard {
 
     @Override
     public String toString() {
-        return "Cartão de ponto{" +
+        return " Cartão de ponto{" +
                 "data: " + getDate() +
                 ", entrada: " + getTimeEntry() +
                 ", saída: " + getTimeOut() +

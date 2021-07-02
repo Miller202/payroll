@@ -26,6 +26,7 @@ public class Syndicate {
         this.EmployeeId = EmployeeId;
         this.active = active;
         this.tax = tax;
+        this.serviceTaxes = new ArrayList<ServiceTax>();
     }
 
     public UUID getId() {
@@ -42,6 +43,10 @@ public class Syndicate {
 
     public void setEmployeeId(UUID employeeId) {
         EmployeeId = employeeId;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public boolean getActive() {
