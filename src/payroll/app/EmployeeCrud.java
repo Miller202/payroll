@@ -20,11 +20,11 @@ public class EmployeeCrud {
         System.out.println("\nDigite o nome do empregado:");
         String name = input.nextLine();
 
-        System.out.println("Digite o endereço:");
+        System.out.println("\nDigite o endereço:");
         String address = input.nextLine();
 
-        System.out.println("Qual o tipo de empregado?");
-        System.out.println("[1] - Horista, [2] - Salariado, [3] - Comissionado\n");
+        System.out.println("\nQual o tipo de empregado?");
+        System.out.println("[1] - Horista, [2] - Salariado, [3] - Comissionado");
         answer = input.nextInt();
 
         if(answer == 1){
@@ -54,7 +54,7 @@ public class EmployeeCrud {
             employee = new Salaried(id, name, address, syndicate, null, salary);
         }
 
-        System.out.println("O empregado é membro do sindicato? ([1] - Sim, [2] - Não): ");
+        System.out.println("\nO empregado é membro do sindicato? ([1] - Sim, [2] - Não): ");
         int aux = input.nextInt();
 
         if (aux == 1){
@@ -65,7 +65,7 @@ public class EmployeeCrud {
             employee.setSyndicate(syndicate);
         }
 
-        System.out.println("Vamos cadastrar os dados de pagamento!");
+        System.out.println("\nVamos cadastrar os dados de pagamento!");
         System.out.println("Digite o número do banco:");
         int bank = input.nextInt();
         System.out.println("Digite o número da agência:");

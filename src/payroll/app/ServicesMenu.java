@@ -1,7 +1,9 @@
 package payroll.app;
 
+import payroll.model.employee.Commissioned;
 import payroll.model.employee.Employee;
 import payroll.model.employee.Hourly;
+import payroll.model.services.SaleResult;
 import payroll.model.services.TimeCard;
 
 import java.time.LocalDate;
@@ -17,8 +19,8 @@ public class ServicesMenu {
         System.out.println("Digite o ID do empregado:");
         String id = input.nextLine();
 
-        Predicate<Employee> hourlyFilter = employee -> employee instanceof Hourly;
-        ArrayList<Employee> hourlyList = Employees.stream().filter(hourlyFilter).
+        Predicate<Employee> empFilter = employee -> employee instanceof Hourly;
+        ArrayList<Employee> hourlyList = Employees.stream().filter(empFilter).
                 collect(Collectors.toCollection(ArrayList::new));
 
         Hourly employeeToPost = null;
@@ -53,10 +55,46 @@ public class ServicesMenu {
             int minuteOut = input.nextInt();
             LocalTime timeOut = LocalTime.of(hourOut, minuteOut);
 
-            TimeCard timecard = new TimeCard(date, timeEntry, timeOut);
-            employeeToPost.getTimeCards().add(timecard);
+            TimeCard timeCard = new TimeCard(date, timeEntry, timeOut);
+            employeeToPost.getTimeCards().add(timeCard);
             System.out.println("Cartão de ponto registrado!");
         }
 
+    }
+
+    public static void postSaleResult(Scanner input, ArrayList<Employee> Employees){
+        System.out.println("Digite o ID do empregado:");
+        String id = input.nextLine();
+
+        Predicate<Employee> empFilter = employee -> employee instanceof Commissioned;
+        ArrayList<Employee> commissionedList = Employees.stream().filter(empFilter).
+                collect(Collectors.toCollection(ArrayList::new));
+
+        Commissioned employeeToPost = null;
+        for(Employee commissioned : commissionedList){
+            if(commissioned.getId().toString().equals(id)){
+                employeeToPost = (Commissioned) commissioned;
+            }
+        }
+
+        if(employeeToPost == null){
+            System.out.println("Empregado não encontrado na lista de Comissionados!");
+        }else{
+            System.out.println("Digite o dia (número):");
+            int day = input.nextInt();
+            System.out.println("Digite o mês (número):");
+            int month = input.nextInt();
+            System.out.println("Digite o ano:");
+            int year = input.nextInt();
+            input.nextLine();
+            LocalDate date = LocalDate.of(year, month, day);
+
+            System.out.println("Digite o valor da venda:");
+            Double value = input.nextDouble();
+
+            SaleResult saleResult =  new SaleResult(value, date);
+            employeeToPost.getSaleResults().add(saleResult);
+            System.out.println("Resultado da venda registrado!");
+        }
     }
 }

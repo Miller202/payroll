@@ -76,7 +76,7 @@ public abstract class Employee {
         if(getSyndicate() != null){
             str += getSyndicate().toString();
         }else{
-            str += "Não é membro do sindicato";
+            str += "\nNão é membro do sindicato";
         }
         str += "\nDados de pagamento:" + getPaymentData().toString();
         return str;

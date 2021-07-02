@@ -48,6 +48,6 @@ public class TimeCard {
                 "data: " + getDate() +
                 ", entrada: " + getTimeEntry() +
                 ", saída: " + getTimeOut() +
-                '}';
+                '}' + "\n";
     }
 }
