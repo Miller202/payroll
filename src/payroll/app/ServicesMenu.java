@@ -34,7 +34,6 @@ public class ServicesMenu {
         if(employeeToPost == null){
             System.out.println("Empregado não encontrado na lista de Horistas!");
         }else{
-
             System.out.println("Digite o dia (número):");
             int day = input.nextInt();
             System.out.println("Digite o mês (número):");

@@ -26,7 +26,7 @@ public class Main {
             System.out.println("[4] - Lançar cartão de ponto");
             System.out.println("[5] - Lançar resultado de venda");
             System.out.println("[6] - Lançar taxa de serviço");
-
+            System.out.println("[7] - Editar empregado");
             System.out.println("[11] - Sair\n");
 
             option = input.nextInt();
@@ -49,6 +49,9 @@ public class Main {
             }
             else if(option == 6){
                 ServicesMenu.postServiceTax(input, Employees);
+            }
+            else if(option == 7){
+                EmployeeCrud.editEmployee(input, Employees);
             }
         }
     }

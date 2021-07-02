@@ -65,6 +65,8 @@ public class EmployeeCrud {
             employee.setSyndicate(syndicate);
         }
 
+        input.nextLine();
+
         System.out.println("\nVamos cadastrar os dados de pagamento!");
         System.out.println("Digite o número do banco:");
         int bank = input.nextInt();
@@ -142,4 +144,99 @@ public class EmployeeCrud {
         }
     }
 
+    public static void editEmployee(Scanner input, ArrayList<Employee> Employees){
+
+        System.out.println("\nDigite o ID do empregado:");
+        String id = input.nextLine();
+
+        Employee employeeToEdit = null;
+        for(Employee employee : Employees){
+            if(employee.getId().toString().equals(id)){
+                employeeToEdit = employee;
+            }
+        }
+
+        if(employeeToEdit == null){
+            System.out.println("\nEmpregado não foi encontrado!");
+        }
+        else{
+            System.out.println("\nQual informação deseja editar?");
+            System.out.println("[1] Nome");
+            System.out.println("[2] Endereço");
+            System.out.println("[3] Tipo de empregado");
+            int option = input.nextInt();
+            input.nextLine();
+
+            if(option == 1){
+                System.out.println("Digite o novo nome: ");
+                String name = input.nextLine();
+                for(Employee employee : Employees){
+                    if(employee.getId().toString().equals(id)){
+                        employee.setName(name);
+                    }
+                }
+                System.out.println("Nome editado!");
+            }
+            else if(option == 2){
+                System.out.println("Digite o novo endereço: ");
+                String address = input.nextLine();
+                for(Employee employee : Employees){
+                    if(employee.getId().toString().equals(id)){
+                        employee.setAddress(address);
+                    }
+                }
+                System.out.println("Endereço editado!");
+            }
+            else if(option == 3){
+                System.out.println("\nEscolha o novo tipo");
+                System.out.println("[1] - Horista, [2] - Salariado, [3] - Comissionado");
+                int type = input.nextInt();
+
+                for(Employee employee : Employees){
+                    if(employee.getId().toString().equals(id)){
+                        Employee newEmployee = null;
+                        if(type == 1){
+                            System.out.println("Digite o salário por hora:");
+                            Double hourlySalary = input.nextDouble();
+                            System.out.println();
+
+                            newEmployee = new Hourly(employee.getId(), employee.getName(),
+                                    employee.getAddress(), employee.getSyndicate(),
+                                    employee.getPaymentData(), hourlySalary);
+                        }else if(type == 2){
+                            System.out.println("Digite o salário:");
+                            Double salary = input.nextDouble();
+                            System.out.println();
+
+                            newEmployee = new Salaried(employee.getId(), employee.getName(),
+                                    employee.getAddress(), employee.getSyndicate(),
+                                    employee.getPaymentData(), salary);
+                        }else if(type == 3){
+                            System.out.println("Digite o salário fixo:");
+                            Double fixedSalary = input.nextDouble();
+                            System.out.println();
+
+                            System.out.println("Digite a taxa de comissão:");
+                            Double commission = input.nextDouble();
+                            System.out.println();
+
+                            newEmployee = new Commissioned(employee.getId(), employee.getName(),
+                                    employee.getAddress(), employee.getSyndicate(),
+                                    employee.getPaymentData(), fixedSalary, commission);
+                        }else{
+                            System.out.println("Opção inválida!");
+                        }
+
+                        Employees.remove(employee);
+                        Employees.add(newEmployee);
+                        System.out.println("\nTipo de empregado editado com sucesso!");
+                    }
+                }
+            }
+            else{
+                System.out.println("Opção inválida!");
+            }
+        }
+
+    }
 }
