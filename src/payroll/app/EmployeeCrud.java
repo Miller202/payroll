@@ -164,6 +164,9 @@ public class EmployeeCrud {
             System.out.println("[1] Nome");
             System.out.println("[2] Endereço");
             System.out.println("[3] Tipo de empregado");
+            System.out.println("[4] Método de pagamento");
+            System.out.println("[5] Vínculo ao sindicato");
+            System.out.println("[6] Taxa do sindicato");
             int option = input.nextInt();
             input.nextLine();
 
@@ -232,6 +235,77 @@ public class EmployeeCrud {
                         System.out.println("\nTipo de empregado editado com sucesso!");
                     }
                 }
+            }
+            else if(option == 4){
+                System.out.println("Qual o método de pagamento?");
+                System.out.println("[1] - Cheque nos correios, [2] - Depósito bancário, [3] - Em mãos\n");
+                int choice = input.nextInt();
+
+                String method;
+                if(choice == 1){
+                    method = "Cheque nos correios";
+                }else if(choice == 2){
+                    method = "Depósito bancário";
+                }else if(choice == 3){
+                    method = "Em mãos";
+                }else{
+                    method = "Depósito bancário";
+                }
+
+                for(Employee employee : Employees){
+                    if(employee.getId().toString().equals(id)){
+                        employee.getPaymentData().setPaymentMethod(method);
+                    }
+                }
+                System.out.println("Método de pagamento atualizado!");
+            }
+            else if(option == 5){
+                for(Employee employee : Employees){
+                    if(employee.getId().toString().equals(id)){
+                        if(employee.getSyndicate() == null){
+                            System.out.println("Empregado não pertence ao sindicato, deseja cadastrar?");
+                            System.out.println("[1] Sim, [2] Não");
+                            int choice = input.nextInt();
+                            if(choice == 1){
+                                System.out.println("Digite a taxa sindical:");
+                                Double tax = input.nextDouble();
+                                employee.setSyndicate(new Syndicate(UUID.randomUUID(),
+                                        employee.getId(), true, tax));
+                            }
+                        }else{
+                            if(employee.getSyndicate().getActive()){
+                                System.out.println("Seu cadastro no sindicato está ativo, deseja desativar?");
+                                System.out.println("[1] Sim, [2] Não");
+                                int choice = input.nextInt();
+                                if(choice == 1){
+                                    employee.getSyndicate().setActive(false);
+                                }
+                            }else{
+                                System.out.println("Seu cadastro no sindicato está desativado, deseja ativar?");
+                                System.out.println("[1] Sim, [2] Não");
+                                int choice = input.nextInt();
+                                if(choice == 1){
+                                    employee.getSyndicate().setActive(true);
+                                }
+                            }
+                        }
+                    }
+                }
+                System.out.println("Operação realizada com sucesso!");
+            }
+            else if(option == 6){
+                for(Employee employee : Employees){
+                    if(employee.getId().toString().equals(id)){
+                        if(employee.getSyndicate() == null){
+                            System.out.println("Empregado não pertence ao sindicato");
+                        }else{
+                            System.out.println("Digite a nova taxa sindical:");
+                            Double tax = input.nextDouble();
+                            employee.getSyndicate().setTax(tax);
+                        }
+                    }
+                }
+                System.out.println("Operação realizada com sucesso!");
             }
             else{
                 System.out.println("Opção inválida!");
