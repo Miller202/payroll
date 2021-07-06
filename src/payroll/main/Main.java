@@ -1,7 +1,7 @@
 package payroll.main;
 
-import payroll.app.EmployeeCrud;
-import payroll.app.ServicesMenu;
+import payroll.control.EmployeeControl;
+import payroll.control.ServicesControl;
 import payroll.model.employee.Employee;
 
 import java.util.ArrayList;
@@ -33,25 +33,25 @@ public class Main {
             input.nextLine();
 
             if(option == 1){
-                Employees.add(EmployeeCrud.register(input));
+                Employees.add(EmployeeControl.register(input));
             }
             else if(option == 2){
-                EmployeeCrud.removeEmployee(input, Employees);
+                EmployeeControl.removeEmployee(input, Employees);
             }
             else if(option == 3){
-                EmployeeCrud.listEmployees(Employees);
+                EmployeeControl.listEmployees(Employees);
             }
             else if(option == 4){
-                ServicesMenu.postTimeCard(input, Employees);
+                ServicesControl.postTimeCard(input, Employees);
             }
             else if(option == 5){
-                ServicesMenu.postSaleResult(input, Employees);
+                ServicesControl.postSaleResult(input, Employees);
             }
             else if(option == 6){
-                ServicesMenu.postServiceTax(input, Employees);
+                ServicesControl.postServiceTax(input, Employees);
             }
             else if(option == 7){
-                EmployeeCrud.editEmployee(input, Employees);
+                EmployeeControl.editEmployee(input, Employees);
             }
         }
     }

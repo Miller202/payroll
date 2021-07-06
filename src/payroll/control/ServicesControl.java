@@ -1,4 +1,4 @@
-package payroll.app;
+package payroll.control;
 
 import payroll.model.employee.Commissioned;
 import payroll.model.employee.Employee;
@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ServicesMenu {
+public class ServicesControl {
 
     public static void postTimeCard(Scanner input, ArrayList<Employee> Employees){
         System.out.println("Digite o ID do empregado:");

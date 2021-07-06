@@ -1,4 +1,4 @@
-package payroll.app;
+package payroll.control;
 
 import payroll.model.employee.*;
 import payroll.model.payments.PaymentData;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class EmployeeCrud {
+public class EmployeeControl {
 
     public static Employee register(Scanner input){
         Employee employee;
