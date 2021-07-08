@@ -1,5 +1,6 @@
 package payroll.control;
 
+import payroll.main.GeneralUtils;
 import payroll.model.employee.*;
 import payroll.model.payments.PaymentData;
 
@@ -75,21 +76,8 @@ public class EmployeeControl {
         System.out.println("Digite o número da conta:");
         int account = input.nextInt();
 
-        System.out.println("Qual o método de pagamento?");
-        System.out.println("[1] - Cheque nos correios, [2] - Depósito bancário, [3] - Em mãos\n");
-        int methodChoiced = input.nextInt();
 
-        String paymethod;
-
-        if(methodChoiced == 1){
-            paymethod = "Cheque nos correios";
-        }else if(methodChoiced == 2){
-            paymethod = "Depósito bancário";
-        }else if(methodChoiced == 3){
-            paymethod = "Em mãos";
-        }else{
-            paymethod = "Depósito bancário";
-        }
+        String payMethod = GeneralUtils.readPayMethod(input);
 
         System.out.println("Como deseja receber o seu salário?");
         System.out.println("[1] - Mensal, [2] - Semanal, [3] - Bisemanal\n");
@@ -107,7 +95,7 @@ public class EmployeeControl {
             schedule = "Mensal";
         }
 
-        paymentData = new PaymentData(bank, agency, account, paymethod, schedule);
+        paymentData = new PaymentData(bank, agency, account, payMethod, schedule);
 
         employee.setPaymentData(paymentData);
 
@@ -237,24 +225,11 @@ public class EmployeeControl {
                 }
             }
             else if(option == 4){
-                System.out.println("Qual o método de pagamento?");
-                System.out.println("[1] - Cheque nos correios, [2] - Depósito bancário, [3] - Em mãos\n");
-                int choice = input.nextInt();
-
-                String method;
-                if(choice == 1){
-                    method = "Cheque nos correios";
-                }else if(choice == 2){
-                    method = "Depósito bancário";
-                }else if(choice == 3){
-                    method = "Em mãos";
-                }else{
-                    method = "Depósito bancário";
-                }
+                String payMethod = GeneralUtils.readPayMethod(input);
 
                 for(Employee employee : Employees){
                     if(employee.getId().toString().equals(id)){
-                        employee.getPaymentData().setPaymentMethod(method);
+                        employee.getPaymentData().setPaymentMethod(payMethod);
                     }
                 }
                 System.out.println("Método de pagamento atualizado!");

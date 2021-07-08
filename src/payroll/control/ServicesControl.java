@@ -1,5 +1,6 @@
 package payroll.control;
 
+import payroll.main.GeneralUtils;
 import payroll.model.employee.Commissioned;
 import payroll.model.employee.Employee;
 import payroll.model.employee.Hourly;
@@ -34,26 +35,12 @@ public class ServicesControl {
         if(employeeToPost == null){
             System.out.println("Empregado não encontrado na lista de Horistas!");
         }else{
-            System.out.println("Digite o dia (número):");
-            int day = input.nextInt();
-            System.out.println("Digite o mês (número):");
-            int month = input.nextInt();
-            System.out.println("Digite o ano:");
-            int year = input.nextInt();
-            input.nextLine();
-            LocalDate date = LocalDate.of(year, month, day);
+            LocalDate date = GeneralUtils.readData(input);
 
-            System.out.println("Digite a hora de entrada:");
-            int hourEntry = input.nextInt();
-            System.out.println("Digite o minuto de entrada:");
-            int minuteEntry = input.nextInt();
-            LocalTime timeEntry = LocalTime.of(hourEntry, minuteEntry);
-
-            System.out.println("Digite a hora de saída:");
-            int hourOut = input.nextInt();
-            System.out.println("Digite o minuto de saída:");
-            int minuteOut = input.nextInt();
-            LocalTime timeOut = LocalTime.of(hourOut, minuteOut);
+            System.out.println("Horário de entrada:");
+            LocalTime timeEntry = GeneralUtils.readTime(input);
+            System.out.println("Horário de saída:");
+            LocalTime timeOut = GeneralUtils.readTime(input);
 
             TimeCard timeCard = new TimeCard(date, timeEntry, timeOut);
             employeeToPost.getTimeCards().add(timeCard);
@@ -83,14 +70,7 @@ public class ServicesControl {
             System.out.println("Digite o valor da venda:");
             Double value = input.nextDouble();
 
-            System.out.println("Digite o dia (número):");
-            int day = input.nextInt();
-            System.out.println("Digite o mês (número):");
-            int month = input.nextInt();
-            System.out.println("Digite o ano:");
-            int year = input.nextInt();
-            input.nextLine();
-            LocalDate date = LocalDate.of(year, month, day);
+            LocalDate date = GeneralUtils.readData(input);
 
             SaleResult saleResult =  new SaleResult(value, date);
             employeeToPost.getSaleResults().add(saleResult);
@@ -119,18 +99,10 @@ public class ServicesControl {
             System.out.println("Digite o valor da taxa de serviço:");
             Double value = input.nextDouble();
 
-            System.out.println("Digite o dia (número):");
-            int day = input.nextInt();
-            System.out.println("Digite o mês (número):");
-            int month = input.nextInt();
-            System.out.println("Digite o ano:");
-            int year = input.nextInt();
-            input.nextLine();
-            LocalDate date = LocalDate.of(year, month, day);
+            LocalDate date = GeneralUtils.readData(input);
 
             ServiceTax serviceTax = new ServiceTax(value, date);
             employeeToPost.getSyndicate().getServiceTaxes().add(serviceTax);
         }
     }
-
 }
