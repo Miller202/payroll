@@ -76,24 +76,9 @@ public class EmployeeControl {
         System.out.println("Digite o número da conta:");
         int account = input.nextInt();
 
-
         String payMethod = GeneralUtils.readPayMethod(input);
 
-        System.out.println("Como deseja receber o seu salário?");
-        System.out.println("[1] - Mensal, [2] - Semanal, [3] - Bisemanal\n");
-        int scheduleChoiced = input.nextInt();
-
-        String schedule;
-
-        if(scheduleChoiced == 1){
-            schedule = "Mensal";
-        }else if(scheduleChoiced == 2){
-            schedule = "Semanal";
-        }else if(scheduleChoiced == 3){
-            schedule = "Bisemanal";
-        }else{
-            schedule = "Mensal";
-        }
+        String schedule = GeneralUtils.readSchedule(input);
 
         paymentData = new PaymentData(bank, agency, account, payMethod, schedule);
 
