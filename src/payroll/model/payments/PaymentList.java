@@ -37,6 +37,7 @@ public class PaymentList {
         for(PayCheck paycheck : this.getPayChecks()){
             str += paycheck.toString();
         }
+        str += "\n";
         return str;
     }
 }

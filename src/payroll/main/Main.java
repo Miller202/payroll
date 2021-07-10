@@ -1,8 +1,10 @@
 package payroll.main;
 
 import payroll.control.EmployeeControl;
+import payroll.control.PaymentsControl;
 import payroll.control.ServicesControl;
 import payroll.model.employee.Employee;
+import payroll.model.payments.PaymentList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,6 +16,8 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         ArrayList<Employee> Employees = new ArrayList<Employee>();
+
+        ArrayList<PaymentList> PaymentLists = new ArrayList<>();
 
         int option = 0;
 
@@ -27,6 +31,7 @@ public class Main {
             System.out.println("[5] - Lançar resultado de venda");
             System.out.println("[6] - Lançar taxa de serviço");
             System.out.println("[7] - Editar empregado");
+            System.out.println("[8] - Rodar folha de pagamento (em desenvolvimento...)");
             System.out.println("[11] - Sair\n");
 
             option = input.nextInt();
@@ -52,6 +57,15 @@ public class Main {
             }
             else if(option == 7){
                 EmployeeControl.editEmployee(input, Employees);
+            }
+            else if(option == 8){
+                if(!Employees.isEmpty()){
+                    PaymentLists.add(PaymentsControl.payroll(input, Employees));
+                    System.out.println("\nRelatório com as listas de pagamento:\n");
+                    System.out.println(PaymentLists);
+                }else{
+                    System.out.println("Não há empregados cadastrados!");
+                }
             }
         }
     }

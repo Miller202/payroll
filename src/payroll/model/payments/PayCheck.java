@@ -73,11 +73,11 @@ public class PayCheck {
     public String toString() {
         String str = "\nEmpregado: " + this.getEmployee().getName();
         str += "\nMétodo de pagamento: " + this.getEmployee().getPaymentData().getPaymentMethod();
-        str += "\nValor bruto do pagamento:" + this.getPaymentValue();
+        str += "\nValor bruto do pagamento: " + this.getPaymentValue();
         if(isHaveTax()){
-            str += "\nSalário final (bruto - taxas)" + (this.getPaymentValue() - this.getTaxes());
+            str += "\nSalário final (bruto - taxas): " + (this.getPaymentValue() - this.getTaxes());
         }else{
-            str += "\nSalário final (não houve desconto de taxas):" + this.getPaymentValue();
+            str += "\nSalário final (não houve desconto de taxas): " + this.getPaymentValue();
         }
         str += "\nData: " + this.getDate() + "\n";
 

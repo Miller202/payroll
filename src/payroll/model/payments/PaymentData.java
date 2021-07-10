@@ -1,5 +1,8 @@
 package payroll.model.payments;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class PaymentData {
 
     private int bank;
@@ -12,6 +15,8 @@ public class PaymentData {
 
     private String schedule;
 
+    private ArrayList<PayCheck> payChecks;
+
     public PaymentData(){
 
     }
@@ -22,6 +27,7 @@ public class PaymentData {
         this.account = account;
         this.paymentMethod = paymentMethod;
         this.schedule = schedule;
+        this.payChecks = new ArrayList<PayCheck>();
     }
 
     public int getBank() {
@@ -62,6 +68,14 @@ public class PaymentData {
 
     public void setSchedule(String schedule) {
         this.schedule = schedule;
+    }
+
+    public ArrayList<PayCheck> getPayChecks() {
+        return payChecks;
+    }
+
+    public void setPayChecks(ArrayList<PayCheck> payChecks) {
+        this.payChecks = payChecks;
     }
 
     @Override
