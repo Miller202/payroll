@@ -2,9 +2,15 @@ package payroll.model.employee;
 
 import payroll.model.payments.PayCheck;
 import payroll.model.payments.PaymentData;
+import payroll.model.services.ServiceTax;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toCollection;
 
 public abstract class Employee {
 
@@ -84,11 +90,48 @@ public abstract class Employee {
         return str;
     }
 
-    public PayCheck makePayment(LocalDate date){
+    public Double getSyndicateTax() {
+        Double tax = 0.0;
+
+        if (this.getSyndicate() != null) {
+            if (this.getSyndicate().isActive()) {
+                tax += this.getSyndicate().getTax();
+            }
+        }
+
+        return tax;
+    }
+
+    public Double calcServicesTaxes(){
+        ArrayList<ServiceTax> serviceTaxes;
+        ArrayList<PayCheck> payChecks = this.getPaymentData().getPayChecks();
+        Double taxes = 0.0;
+
+        if(this.getSyndicate() != null){
+
+            if (!payChecks.isEmpty()) {
+                LocalDate lastDate = payChecks.get(payChecks.size() - 1).getDate();
+                Predicate<ServiceTax> dateFilter = tax -> tax.getDate().isAfter(lastDate);
+
+                serviceTaxes = this.getSyndicate().getServiceTaxes().stream().filter(dateFilter).
+                        collect(toCollection(ArrayList::new));
+            } else {
+                serviceTaxes = this.getSyndicate().getServiceTaxes();
+            }
+
+            for(ServiceTax stax : serviceTaxes){
+                taxes += stax.getValue();
+            }
+        }
+
+        return taxes;
+    }
+
+    public PayCheck makePayment(LocalDate paymentDate){
         PayCheck payCheck;
         Double paymentValue = 0.0; // make function to get the gross payment
-        Double taxSyndicate = this.getSyndicate().getTax();
-        Double taxes = 0.0; // make function to get all service taxes
+        Double taxSyndicate = getSyndicateTax();
+        Double taxes = calcServicesTaxes();
         boolean haveTax = false;
 
         if(taxSyndicate > 0.0){
@@ -96,7 +139,7 @@ public abstract class Employee {
             haveTax = true;
         }
 
-        payCheck = new PayCheck(this, paymentValue, taxes, haveTax, date);
+        payCheck = new PayCheck(this, paymentValue, taxes, haveTax, paymentDate);
         this.getPaymentData().getPayChecks().add(payCheck);
         return payCheck;
     }

@@ -16,14 +16,14 @@ public class PaymentsControl {
         PaymentList paymentList;
         ArrayList<PayCheck> payCheckList = new ArrayList<>();
 
-        LocalDate testDate = GeneralUtils.readData(input);
+        LocalDate paymentDate = GeneralUtils.readData(input);
         for(Employee emp : employees){
-            payCheck = emp.makePayment(testDate);
+            payCheck = emp.makePayment(paymentDate);
             System.out.println(payCheck.toString());
             payCheckList.add(payCheck);
         }
 
-        paymentList = new PaymentList(payCheckList, testDate);
+        paymentList = new PaymentList(payCheckList, paymentDate);
         return paymentList;
     }
 
