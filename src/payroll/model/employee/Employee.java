@@ -1,7 +1,9 @@
 package payroll.model.employee;
 
+import payroll.model.payments.PayCheck;
 import payroll.model.payments.PaymentData;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public abstract class Employee {
@@ -80,6 +82,23 @@ public abstract class Employee {
         }
         str += "\nDados de pagamento:" + getPaymentData().toString();
         return str;
+    }
+
+    public PayCheck makePayment(LocalDate date){
+        PayCheck payCheck;
+        Double paymentValue = 0.0; // make function to get the gross payment
+        Double taxSyndicate = this.getSyndicate().getTax();
+        Double taxes = 0.0; // make function to get all service taxes
+        boolean haveTax = false;
+
+        if(taxSyndicate > 0.0){
+            taxes += taxSyndicate;
+            haveTax = true;
+        }
+
+        payCheck = new PayCheck(this, paymentValue, taxes, haveTax, date);
+        this.getPaymentData().getPayChecks().add(payCheck);
+        return payCheck;
     }
 
 }

@@ -18,7 +18,7 @@ public class PaymentsControl {
 
         LocalDate testDate = GeneralUtils.readData(input);
         for(Employee emp : employees){
-            payCheck = new PayCheck(emp, 0.0, 0.0, false, testDate);
+            payCheck = emp.makePayment(testDate);
             System.out.println(payCheck.toString());
             payCheckList.add(payCheck);
         }
