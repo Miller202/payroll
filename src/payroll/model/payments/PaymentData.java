@@ -1,6 +1,5 @@
 package payroll.model.payments;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PaymentData {
@@ -13,7 +12,7 @@ public class PaymentData {
 
     private String paymentMethod;
 
-    private String schedule;
+    private PaymentSchedule schedule;
 
     private ArrayList<PayCheck> payChecks;
 
@@ -21,7 +20,7 @@ public class PaymentData {
 
     }
 
-    public PaymentData(int bank, int agency, int account, String paymentMethod, String schedule) {
+    public PaymentData(int bank, int agency, int account, String paymentMethod, PaymentSchedule schedule) {
         this.bank = bank;
         this.agency = agency;
         this.account = account;
@@ -62,11 +61,11 @@ public class PaymentData {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getSchedule() {
+    public PaymentSchedule getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(String schedule) {
+    public void setSchedule(PaymentSchedule schedule) {
         this.schedule = schedule;
     }
 
@@ -85,7 +84,7 @@ public class PaymentData {
                 ", Agencia: " + getAgency() +
                 ", Conta: " + getAccount() +
                 ", Método de pagamento: '" + getPaymentMethod() + '\'' +
-                ", Agenda: '" + getSchedule() + '\'' +
+                ", Agenda: '" + getSchedule().toString() + '\'' +
                 '}';
     }
 }

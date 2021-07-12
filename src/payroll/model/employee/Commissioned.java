@@ -58,7 +58,7 @@ public class Commissioned extends Employee {
 
     @Override
     public String toString() {
-        return super.toString() + "\nComissionado{" +
+        return super.toString() + "\nComissionado: {" +
                 " Salário fixo: " + getFixedSalary() +
                 ", Comissão: " + getCommission() +
                 ", Resultado das vendas: " + getSaleResults() +

@@ -46,7 +46,7 @@ public class Hourly extends Employee {
 
     @Override
     public String toString() {
-        return super.toString() + "\nHorista{" +
+        return super.toString() + "\nHorista: {" +
                 " Salário por hora: " + getHourlySalary() +
                 ", Cartões de ponto: " + getTimeCards() +
                 '}';

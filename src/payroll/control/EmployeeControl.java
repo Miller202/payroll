@@ -3,6 +3,7 @@ package payroll.control;
 import payroll.main.GeneralUtils;
 import payroll.model.employee.*;
 import payroll.model.payments.PaymentData;
+import payroll.model.payments.PaymentSchedule;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,6 +16,7 @@ public class EmployeeControl {
         Syndicate syndicate = null;
         PaymentData paymentData = null;
         int answer = 0;
+        String schedule;
 
         UUID id = UUID.randomUUID();
 
@@ -33,12 +35,14 @@ public class EmployeeControl {
             Double hourlySalary = input.nextDouble();
 
             employee = new Hourly(id, name, address, syndicate, null, hourlySalary);
+            schedule = "Semanal";
         }
         else if(answer == 2){
             System.out.println("Digite o salário:");
             Double salary = input.nextDouble();
 
             employee = new Salaried(id, name, address, syndicate, null, salary);
+            schedule = "Mensal";
         }
         else if(answer == 3){
             System.out.println("Digite o salário fixo:");
@@ -48,11 +52,13 @@ public class EmployeeControl {
             Double commission = input.nextDouble();
 
             employee = new Commissioned(id, name, address, syndicate, null, fixedSalary, commission);
+            schedule = "Bisemanal";
         }else{
             System.out.println("Digite o salário:");
             Double salary = input.nextDouble();
 
             employee = new Salaried(id, name, address, syndicate, null, salary);
+            schedule = "Mensal";
         }
 
         System.out.println("\nO empregado é membro do sindicato? ([1] - Sim, [2] - Não): ");
@@ -78,9 +84,9 @@ public class EmployeeControl {
 
         String payMethod = GeneralUtils.readPayMethod(input);
 
-        String schedule = GeneralUtils.readSchedule(input);
+        PaymentSchedule paySchedule = new PaymentSchedule(null,null, schedule);
 
-        paymentData = new PaymentData(bank, agency, account, payMethod, schedule);
+        paymentData = new PaymentData(bank, agency, account, payMethod, paySchedule);
 
         employee.setPaymentData(paymentData);
 

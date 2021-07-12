@@ -32,7 +32,7 @@ public class Salaried extends Employee {
 
     @Override
     public String toString() {
-        return super.toString() + "\nAssalariado{" +
+        return super.toString() + "\nAssalariado: {" +
                 "Salário=" + getSalary() +
                 '}';
     }
