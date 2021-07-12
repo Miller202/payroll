@@ -25,6 +25,7 @@
 |----------------|---------------|----------------|-----------|
 | Adição de um empregado  | Um novo empregado é adicionado ao sistema. Os seguintes atributos são fornecidos: nome, endereço, tipo (hourly, salaried, commissioned) e os atributos associados (salário horário, salário mensal, comissão). Um número de empregado (único) deve ser escolhido automaticamente pelo sistema. | Concluído | <ul><li>[x] ok</li></ul>
 | Remoção de um empregado | Um empregado é removido do sistema. | Concluído | <ul><li>[x] ok</li></ul>
+| Listagem de empregados (EXTRA) | Para cada empregado registrado no sistema da empresa, são listados os seguintes dados: nome, endereço, tipo, método de pagamento, dados do sindicato, taxas, cartões de ponto e resultados de vendas (de acordo com o tipo de empregado) | Concluído | <ul><li>[x] ok</li></ul>
 | Lançar um Cartão de Ponto | O sistema anotará a informação do cartão de ponto e a associará ao empregado correto. | Concluído | <ul><li>[x] ok</li></ul>
 | Lançar um Resultado Venda | O sistema anotará a informação do resultado da venda e a associará ao empregado correto. | Concluído | <ul><li>[x] ok</li></ul>
 | Lançar uma taxa de serviço | O sistema anotará a informação da taxa de serviço e a associará ao empregado correto. | Concluído | <ul><li>[x] ok</li></ul>
