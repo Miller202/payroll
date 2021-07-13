@@ -121,6 +121,7 @@ public abstract class Employee {
             for(ServiceTax stax : serviceTaxes){
                 taxes += stax.getValue();
             }
+
         }
 
         return taxes;
@@ -130,9 +131,9 @@ public abstract class Employee {
 
     public PayCheck makePayment(LocalDate paymentDate){
         PayCheck payCheck;
-        Double paymentValue = getGrossPayment(paymentDate);
         Double taxSyndicate = getSyndicateTax();
         Double taxes = calcServicesTaxes();
+        Double paymentValue = getGrossPayment(paymentDate);
         boolean haveTax = false;
 
         if(taxSyndicate > 0.0){

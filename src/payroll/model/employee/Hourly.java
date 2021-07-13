@@ -58,7 +58,7 @@ public class Hourly extends Employee {
     @Override
     public Double getGrossPayment(LocalDate paymentDate) {
         ArrayList<TimeCard> timeCards = this.getTimeCards();
-        double grossPayment = 0.0, hours = 0.0, extraHours = 0.0;
+        double grossPayment = 0.0, hours, extraHours;
 
         for(TimeCard tc : timeCards){
             LocalTime timeEntry = tc.getTimeEntry();

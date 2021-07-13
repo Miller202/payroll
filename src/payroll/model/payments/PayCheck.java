@@ -16,6 +16,10 @@ public class PayCheck {
 
     private LocalDate date;
 
+    public PayCheck(){
+
+    }
+
     public PayCheck(Employee employee, LocalDate date) {
         this.employee = employee;
         this.date = date;
@@ -75,6 +79,7 @@ public class PayCheck {
         str += "\nMétodo de pagamento: " + this.getEmployee().getPaymentData().getPaymentMethod();
         str += "\nValor bruto do pagamento: " + this.getPaymentValue();
         if(isHaveTax()){
+            str += "\nTaxas (sindicato + serviços): " + this.getTaxes();
             str += "\nSalário final (bruto - taxas): " + (this.getPaymentValue() - this.getTaxes());
         }else{
             str += "\nSalário final (não houve desconto de taxas): " + this.getPaymentValue();

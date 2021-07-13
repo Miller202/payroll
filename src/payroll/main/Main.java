@@ -32,6 +32,7 @@ public class Main {
             System.out.println("[6] - Lançar taxa de serviço");
             System.out.println("[7] - Editar empregado");
             System.out.println("[8] - Rodar folha de pagamento (em desenvolvimento...)");
+            System.out.println("[9] - Imprimir lista de pagamentos (aguardando folha...)");
             System.out.println("[11] - Sair\n");
 
             option = input.nextInt();
@@ -44,7 +45,11 @@ public class Main {
                 EmployeeControl.removeEmployee(input, Employees);
             }
             else if(option == 3){
-                EmployeeControl.listEmployees(Employees);
+                if(!Employees.isEmpty()){
+                    EmployeeControl.listEmployees(Employees);
+                }else{
+                    System.out.println("Não há empregados cadastrados!");
+                }
             }
             else if(option == 4){
                 ServicesControl.postTimeCard(input, Employees);
@@ -61,13 +66,14 @@ public class Main {
             else if(option == 8){
                 if(!Employees.isEmpty()){
                     PaymentLists.add(PaymentsControl.payroll(input, Employees));
-                    System.out.println("\nRelatório com as listas de pagamento:\n");
-                    System.out.println(PaymentLists);
                 }else{
                     System.out.println("Não há empregados cadastrados!");
                 }
             }
+            else if(option == 9){
+                System.out.println("\n----Relatório com as listas dos pagamentos----\n");
+                System.out.println(PaymentLists);
+            }
         }
     }
-
 }
