@@ -3,6 +3,7 @@ package payroll.model.employee;
 import payroll.model.payments.PaymentData;
 import payroll.model.services.SaleResult;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -63,5 +64,18 @@ public class Commissioned extends Employee {
                 ", Comissão: " + getCommission() +
                 ", Resultado das vendas: " + getSaleResults() +
                 '}';
+    }
+
+    @Override
+    public Double getGrossPayment(LocalDate paymentDate) {
+        double grossPayment = this.getFixedSalary() / 2;
+        ArrayList<SaleResult> saleResults = this.getSaleResults();
+
+        for(SaleResult sr : saleResults){
+            double commission = (this.getCommission() / 100.0) * sr.getValue();
+            grossPayment += commission;
+        }
+
+        return grossPayment;
     }
 }

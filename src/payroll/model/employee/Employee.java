@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toCollection;
 
@@ -109,14 +108,14 @@ public abstract class Employee {
 
         if(this.getSyndicate() != null){
 
-            if (!payChecks.isEmpty()) {
+            if (payChecks.isEmpty()) {
+                serviceTaxes = this.getSyndicate().getServiceTaxes();
+            } else {
                 LocalDate lastDate = payChecks.get(payChecks.size() - 1).getDate();
                 Predicate<ServiceTax> dateFilter = tax -> tax.getDate().isAfter(lastDate);
 
                 serviceTaxes = this.getSyndicate().getServiceTaxes().stream().filter(dateFilter).
                         collect(toCollection(ArrayList::new));
-            } else {
-                serviceTaxes = this.getSyndicate().getServiceTaxes();
             }
 
             for(ServiceTax stax : serviceTaxes){
@@ -127,9 +126,11 @@ public abstract class Employee {
         return taxes;
     }
 
+    public abstract Double getGrossPayment(LocalDate paymentDate);
+
     public PayCheck makePayment(LocalDate paymentDate){
         PayCheck payCheck;
-        Double paymentValue = 0.0; // make function to get the gross payment
+        Double paymentValue = getGrossPayment(paymentDate);
         Double taxSyndicate = getSyndicateTax();
         Double taxes = calcServicesTaxes();
         boolean haveTax = false;

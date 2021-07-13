@@ -5,6 +5,7 @@ import payroll.model.employee.*;
 import payroll.model.payments.PaymentData;
 import payroll.model.payments.PaymentSchedule;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
@@ -14,9 +15,10 @@ public class EmployeeControl {
     public static Employee register(Scanner input){
         Employee employee;
         Syndicate syndicate = null;
-        PaymentData paymentData = null;
-        int answer = 0;
+        PaymentData paymentData;
+        PaymentSchedule paySchedule;
         String schedule;
+        int answer = 0;
 
         UUID id = UUID.randomUUID();
 
@@ -36,29 +38,32 @@ public class EmployeeControl {
 
             employee = new Hourly(id, name, address, syndicate, null, hourlySalary);
             schedule = "Semanal";
+            paySchedule = new PaymentSchedule(null, DayOfWeek.FRIDAY, schedule);
         }
         else if(answer == 2){
             System.out.println("Digite o salário:");
             Double salary = input.nextDouble();
+            schedule = "Mensal";
 
             employee = new Salaried(id, name, address, syndicate, null, salary);
-            schedule = "Mensal";
+            paySchedule = new PaymentSchedule(null, null, schedule);
         }
         else if(answer == 3){
             System.out.println("Digite o salário fixo:");
             Double fixedSalary = input.nextDouble();
-
             System.out.println("Digite a taxa de comissão:");
             Double commission = input.nextDouble();
+            schedule = "Bisemanal";
 
             employee = new Commissioned(id, name, address, syndicate, null, fixedSalary, commission);
-            schedule = "Bisemanal";
+            paySchedule = new PaymentSchedule(null, DayOfWeek.FRIDAY, schedule);
         }else{
             System.out.println("Digite o salário:");
             Double salary = input.nextDouble();
+            schedule = "Mensal";
 
             employee = new Salaried(id, name, address, syndicate, null, salary);
-            schedule = "Mensal";
+            paySchedule = new PaymentSchedule(null,null, schedule);
         }
 
         System.out.println("\nO empregado é membro do sindicato? ([1] - Sim, [2] - Não): ");
@@ -83,11 +88,7 @@ public class EmployeeControl {
         int account = input.nextInt();
 
         String payMethod = GeneralUtils.readPayMethod(input);
-
-        PaymentSchedule paySchedule = new PaymentSchedule(null,null, schedule);
-
         paymentData = new PaymentData(bank, agency, account, payMethod, paySchedule);
-
         employee.setPaymentData(paymentData);
 
         input.nextLine();

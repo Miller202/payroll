@@ -2,6 +2,7 @@ package payroll.model.employee;
 
 import payroll.model.payments.PaymentData;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class Salaried extends Employee {
@@ -35,5 +36,10 @@ public class Salaried extends Employee {
         return super.toString() + "\nAssalariado: {" +
                 "Salário=" + getSalary() +
                 '}';
+    }
+
+    @Override
+    public Double getGrossPayment(LocalDate paymentDate) {
+        return this.getSalary();
     }
 }
