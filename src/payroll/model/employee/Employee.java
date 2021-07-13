@@ -127,13 +127,13 @@ public abstract class Employee {
         return taxes;
     }
 
-    public abstract Double getGrossPayment(LocalDate paymentDate);
+    public abstract Double getGrossPayment(LocalDate payDate);
 
-    public PayCheck makePayment(LocalDate paymentDate){
+    public PayCheck makePayment(LocalDate payDate){
         PayCheck payCheck;
         Double taxSyndicate = getSyndicateTax();
         Double taxes = calcServicesTaxes();
-        Double paymentValue = getGrossPayment(paymentDate);
+        Double paymentValue = getGrossPayment(payDate);
         boolean haveTax = false;
 
         if(taxSyndicate > 0.0){
@@ -141,7 +141,7 @@ public abstract class Employee {
             haveTax = true;
         }
 
-        payCheck = new PayCheck(this, paymentValue, taxes, haveTax, paymentDate);
+        payCheck = new PayCheck(this, paymentValue, taxes, haveTax, payDate);
         this.getPaymentData().getPayChecks().add(payCheck);
         return payCheck;
     }

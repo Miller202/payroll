@@ -1,11 +1,14 @@
 package payroll.model.employee;
 
+import payroll.model.payments.PayCheck;
 import payroll.model.payments.PaymentData;
 import payroll.model.services.SaleResult;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Commissioned extends Employee {
 
@@ -67,9 +70,25 @@ public class Commissioned extends Employee {
     }
 
     @Override
-    public Double getGrossPayment(LocalDate paymentDate) {
+    public Double getGrossPayment(LocalDate payDate) {
+        ArrayList<SaleResult> saleResults;
+        ArrayList<PayCheck> payChecks = this.getPaymentData().getPayChecks();
         double grossPayment = this.getFixedSalary() / 2;
-        ArrayList<SaleResult> saleResults = this.getSaleResults();
+
+        if(payChecks.isEmpty()){
+            Predicate<SaleResult> dateFilter = saleResult -> !saleResult.getDate().isAfter(payDate);
+
+            saleResults = this.getSaleResults().stream().filter(dateFilter).
+                    collect(Collectors.toCollection(ArrayList::new));
+        }else{
+            LocalDate lastPayCheckDate = payChecks.get(payChecks.size() - 1).getDate();
+
+            Predicate<SaleResult> dateFilter = saleResult -> saleResult.getDate().isAfter(lastPayCheckDate)
+                    && !saleResult.getDate().isAfter(payDate);
+
+            saleResults = this.getSaleResults().stream().filter(dateFilter).
+                    collect(Collectors.toCollection(ArrayList::new));
+        }
 
         for(SaleResult sr : saleResults){
             double commission = (this.getCommission() / 100.0) * sr.getValue();
@@ -78,4 +97,5 @@ public class Commissioned extends Employee {
 
         return grossPayment;
     }
+
 }

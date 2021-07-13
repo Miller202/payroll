@@ -1,5 +1,6 @@
 package payroll.model.employee;
 
+import payroll.model.payments.PayCheck;
 import payroll.model.payments.PaymentData;
 import payroll.model.services.TimeCard;
 
@@ -8,6 +9,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Hourly extends Employee {
 
@@ -56,9 +59,23 @@ public class Hourly extends Employee {
     }
 
     @Override
-    public Double getGrossPayment(LocalDate paymentDate) {
-        ArrayList<TimeCard> timeCards = this.getTimeCards();
-        double grossPayment = 0.0, hours, extraHours;
+    public Double getGrossPayment(LocalDate payDate) {
+        ArrayList<TimeCard> timeCards;
+        ArrayList<PayCheck> payChecks = this.getPaymentData().getPayChecks();
+        double hours, extraHours, grossPayment = 0.0;
+
+        if(payChecks.isEmpty()){
+            Predicate<TimeCard> dateFilter = timeCard -> !timeCard.getDate().isAfter(payDate);
+
+            timeCards = this.getTimeCards().stream().filter(dateFilter).collect(Collectors.toCollection(ArrayList::new));
+        }else{
+            LocalDate lastPayCheckDate = payChecks.get(payChecks.size() - 1).getDate();
+
+            Predicate<TimeCard> dateFilter = timeCard -> timeCard.getDate().isAfter(lastPayCheckDate)
+                    && !timeCard.getDate().isAfter(payDate);
+
+            timeCards = this.getTimeCards().stream().filter(dateFilter).collect(Collectors.toCollection(ArrayList::new));
+        }
 
         for(TimeCard tc : timeCards){
             LocalTime timeEntry = tc.getTimeEntry();
