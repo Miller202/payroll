@@ -5,6 +5,7 @@ import payroll.control.PaymentsControl;
 import payroll.control.ServicesControl;
 import payroll.model.employee.Employee;
 import payroll.model.payments.PaymentList;
+import payroll.model.payments.PaymentSchedule;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,9 +16,9 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
-        ArrayList<Employee> Employees = new ArrayList<Employee>();
-
-        ArrayList<PaymentList> PaymentLists = new ArrayList<>();
+        ArrayList<Employee> employees = new ArrayList<>();
+        ArrayList<PaymentList> paymentLists = new ArrayList<>();
+        ArrayList<PaymentSchedule> paymentSchedules = PaymentsControl.startSchedules();
 
         int option = 0;
 
@@ -40,43 +41,43 @@ public class Main {
             input.nextLine();
 
             if(option == 1){
-                Employees.add(EmployeeControl.register(input));
+                employees.add(EmployeeControl.register(input, paymentSchedules));
             }
             else if(option == 2){
-                EmployeeControl.removeEmployee(input, Employees);
+                EmployeeControl.removeEmployee(input, employees);
             }
             else if(option == 3){
-                if(!Employees.isEmpty()){
-                    EmployeeControl.listEmployees(Employees);
+                if(!employees.isEmpty()){
+                    EmployeeControl.listEmployees(employees);
                 }else{
                     System.out.println("Não há empregados cadastrados!");
                 }
             }
             else if(option == 4){
-                ServicesControl.postTimeCard(input, Employees);
+                ServicesControl.postTimeCard(input, employees);
             }
             else if(option == 5){
-                ServicesControl.postSaleResult(input, Employees);
+                ServicesControl.postSaleResult(input, employees);
             }
             else if(option == 6){
-                ServicesControl.postServiceTax(input, Employees);
+                ServicesControl.postServiceTax(input, employees);
             }
             else if(option == 7){
-                EmployeeControl.editEmployee(input, Employees);
+                EmployeeControl.editEmployee(input, employees);
             }
             else if(option == 8){
-                if(!Employees.isEmpty()){
-                    PaymentLists.add(PaymentsControl.payroll(input, Employees));
+                if(!employees.isEmpty()){
+                    paymentLists.add(PaymentsControl.payroll(input, employees));
                 }else{
                     System.out.println("Não há empregados cadastrados!");
                 }
             }
             else if(option == 9){
                 System.out.println("\n----Relatório com as listas dos pagamentos----\n");
-                System.out.println(PaymentLists);
+                System.out.println(paymentLists);
             }
             else if(option == 10){
-                EmployeeControl.editEmployeeSchedule(input, Employees);
+                EmployeeControl.editEmployeeSchedule(input, employees, paymentSchedules);
             }
         }
     }

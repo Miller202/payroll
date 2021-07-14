@@ -31,7 +31,7 @@ public class ServiceTax {
 
     @Override
     public String toString() {
-        return " Taxa de serviço{" +
+        return " Taxa de serviço {" +
                 " valor da taxa: " + getValue() +
                 ", data: " + getDate() +
                 '}';

@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class EmployeeControl {
 
-    public static Employee register(Scanner input){
+    public static Employee register(Scanner input, ArrayList<PaymentSchedule> paymentSchedules){
         Employee employee;
         Syndicate syndicate = null;
         PaymentData paymentData;
@@ -37,33 +37,29 @@ public class EmployeeControl {
             Double hourlySalary = input.nextDouble();
 
             employee = new Hourly(id, name, address, syndicate, null, hourlySalary);
-            schedule = "Semanal";
-            paySchedule = new PaymentSchedule(null, DayOfWeek.FRIDAY, schedule);
+            paySchedule = paymentSchedules.get(1);
         }
         else if(answer == 2){
             System.out.println("Digite o salário:");
             Double salary = input.nextDouble();
-            schedule = "Mensal";
 
             employee = new Salaried(id, name, address, syndicate, null, salary);
-            paySchedule = new PaymentSchedule(null, null, schedule);
+            paySchedule = paymentSchedules.get(0);
         }
         else if(answer == 3){
             System.out.println("Digite o salário fixo:");
             Double fixedSalary = input.nextDouble();
             System.out.println("Digite a taxa de comissão:");
             Double commission = input.nextDouble();
-            schedule = "Bisemanal";
 
             employee = new Commissioned(id, name, address, syndicate, null, fixedSalary, commission);
-            paySchedule = new PaymentSchedule(null, DayOfWeek.FRIDAY, schedule);
+            paySchedule = paymentSchedules.get(2);
         }else{
             System.out.println("Digite o salário:");
             Double salary = input.nextDouble();
-            schedule = "Mensal";
 
             employee = new Salaried(id, name, address, syndicate, null, salary);
-            paySchedule = new PaymentSchedule(null,null, schedule);
+            paySchedule = paymentSchedules.get(0);
         }
 
         System.out.println("\nO empregado é membro do sindicato? ([1] - Sim, [2] - Não): ");
@@ -281,7 +277,8 @@ public class EmployeeControl {
 
     }
 
-    public static void editEmployeeSchedule(Scanner input, ArrayList<Employee> Employees){
+    public static void editEmployeeSchedule(Scanner input, ArrayList<Employee> Employees,
+                                            ArrayList<PaymentSchedule> paymentSchedules){
         System.out.println("\nDigite o ID do empregado:");
         String id = input.nextLine();
 
@@ -296,14 +293,11 @@ public class EmployeeControl {
 
                 int choice = input.nextInt();
                 if(choice == 1){
-                    employee.getPaymentData().getSchedule().setSchedule("Mensal");
-                    employee.getPaymentData().getSchedule().setWeekDay(null);
+                    employee.getPaymentData().setSchedule(paymentSchedules.get(0));
                 }else if(choice == 2){
-                    employee.getPaymentData().getSchedule().setSchedule("Semanal");
-                    employee.getPaymentData().getSchedule().setWeekDay(DayOfWeek.FRIDAY);
+                    employee.getPaymentData().setSchedule(paymentSchedules.get(1));
                 }else if(choice == 3){
-                    employee.getPaymentData().getSchedule().setSchedule("Bisemanal");
-                    employee.getPaymentData().getSchedule().setWeekDay(DayOfWeek.FRIDAY);
+                    employee.getPaymentData().setSchedule(paymentSchedules.get(2));
                 }
             }
         }
