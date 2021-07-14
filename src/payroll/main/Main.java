@@ -30,9 +30,10 @@ public class Main {
             System.out.println("[4] - Lançar cartão de ponto");
             System.out.println("[5] - Lançar resultado de venda");
             System.out.println("[6] - Lançar taxa de serviço");
-            System.out.println("[7] - Editar empregado");
+            System.out.println("[7] - Editar dados do empregado");
             System.out.println("[8] - Rodar folha de pagamento (em desenvolvimento...)");
-            System.out.println("[9] - Imprimir lista de pagamentos (aguardando folha...)");
+            System.out.println("[9] - Imprimir lista de pagamentos");
+            System.out.println("[10] - Mudar agenda de pagamento");
             System.out.println("[11] - Sair\n");
 
             option = input.nextInt();
@@ -73,6 +74,9 @@ public class Main {
             else if(option == 9){
                 System.out.println("\n----Relatório com as listas dos pagamentos----\n");
                 System.out.println(PaymentLists);
+            }
+            else if(option == 10){
+                EmployeeControl.editEmployeeSchedule(input, Employees);
             }
         }
     }

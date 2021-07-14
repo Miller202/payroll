@@ -40,6 +40,6 @@ public class Salaried extends Employee {
 
     @Override
     public Double getGrossPayment(LocalDate payDate) {
-        return this.getSalary();
+        return (this.getSalary() / this.getMethodDiv());
     }
 }

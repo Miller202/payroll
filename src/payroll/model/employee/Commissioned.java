@@ -73,7 +73,7 @@ public class Commissioned extends Employee {
     public Double getGrossPayment(LocalDate payDate) {
         ArrayList<SaleResult> saleResults;
         ArrayList<PayCheck> payChecks = this.getPaymentData().getPayChecks();
-        double grossPayment = this.getFixedSalary() / 2;
+        double grossPayment = this.getFixedSalary() / this.getMethodDiv();
 
         if(payChecks.isEmpty()){
             Predicate<SaleResult> dateFilter = saleResult -> !saleResult.getDate().isAfter(payDate);

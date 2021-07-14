@@ -127,18 +127,46 @@ public abstract class Employee {
         return taxes;
     }
 
+    public int getMethodDiv(){
+        int div;
+        String method = this.getPaymentData().getSchedule().getSchedule();
+        if(method.equals("Semanal")){
+            div = 4;
+        }else if(method.equals("Bisemanal")){
+            div = 2;
+        }else{
+            div = 1;
+        }
+        return div;
+    }
+
     public abstract Double getGrossPayment(LocalDate payDate);
 
     public PayCheck makePayment(LocalDate payDate){
         PayCheck payCheck;
-        Double taxSyndicate = getSyndicateTax();
-        Double taxes = calcServicesTaxes();
-        Double paymentValue = getGrossPayment(payDate);
+        PayCheck lastPayCheck = null;
+        Double taxSyndicate = this.getSyndicateTax();
+        Double taxes = this.calcServicesTaxes();
+        Double paymentValue = this.getGrossPayment(payDate);
+        ArrayList<PayCheck> payChecks = this.getPaymentData().getPayChecks();
         boolean haveTax = false;
 
         if(taxSyndicate > 0.0){
-            taxes += taxSyndicate;
-            haveTax = true;
+            if(!payChecks.isEmpty()){
+                lastPayCheck = payChecks.get(payChecks.size()-1);
+            }
+
+            if(lastPayCheck != null){
+                LocalDate lastPayDate = lastPayCheck.getDate();
+
+                if(payDate.getMonthValue() != lastPayDate.getMonthValue()){
+                    taxes += taxSyndicate;
+                    haveTax = true;
+                }
+            }else{
+                taxes += taxSyndicate;
+                haveTax = true;
+            }
         }
 
         payCheck = new PayCheck(this, paymentValue, taxes, haveTax, payDate);

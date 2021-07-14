@@ -280,4 +280,37 @@ public class EmployeeControl {
         }
 
     }
+
+    public static void editEmployeeSchedule(Scanner input, ArrayList<Employee> Employees){
+        System.out.println("\nDigite o ID do empregado:");
+        String id = input.nextLine();
+
+        Boolean foundEmp = null;
+        for(Employee employee : Employees){
+            if(employee.getId().toString().equals(id)){
+                foundEmp = true;
+                System.out.println("\n-Escolha uma das agendas para receber seu salário-");
+                System.out.println("\n[1] Mensalmente");
+                System.out.println("\n[2] Semanalmente (Toda sexta-feira)");
+                System.out.println("\n[3] Bisemanalmente");
+
+                int choice = input.nextInt();
+                if(choice == 1){
+                    employee.getPaymentData().getSchedule().setSchedule("Mensal");
+                    employee.getPaymentData().getSchedule().setWeekDay(null);
+                }else if(choice == 2){
+                    employee.getPaymentData().getSchedule().setSchedule("Semanal");
+                    employee.getPaymentData().getSchedule().setWeekDay(DayOfWeek.FRIDAY);
+                }else if(choice == 3){
+                    employee.getPaymentData().getSchedule().setSchedule("Bisemanal");
+                    employee.getPaymentData().getSchedule().setWeekDay(DayOfWeek.FRIDAY);
+                }
+            }
+        }
+
+        if(foundEmp == null){
+            System.out.println("\nEmpregado não foi encontrado!");
+        }
+
+    }
 }
