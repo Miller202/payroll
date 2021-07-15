@@ -1,5 +1,6 @@
 package payroll.main;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -25,6 +26,20 @@ public class GeneralUtils {
         int minute= input.nextInt();
 
         return LocalTime.of(hour, minute);
+    }
+
+    public static LocalDate getLastJobDay(LocalDate lastDayOfMonth){
+        LocalDate lastJobDay;
+
+        if(lastDayOfMonth.getDayOfWeek() == DayOfWeek.SATURDAY){
+            lastJobDay = lastDayOfMonth.minusDays(1);
+        }else if(lastDayOfMonth.getDayOfWeek() == DayOfWeek.SUNDAY){
+            lastJobDay = lastDayOfMonth.minusDays(2);
+        }else{
+            lastJobDay = lastDayOfMonth;
+        }
+
+        return lastJobDay;
     }
 
     public static String readPayMethod(Scanner input){

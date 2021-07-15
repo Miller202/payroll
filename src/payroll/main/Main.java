@@ -17,7 +17,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         ArrayList<Employee> employees = new ArrayList<>();
-        ArrayList<PaymentList> paymentLists = new ArrayList<>();
+        ArrayList<PaymentList> paymentsLists = new ArrayList<>();
         ArrayList<PaymentSchedule> paymentSchedules = PaymentsControl.startSchedules();
 
         int option = 0;
@@ -32,8 +32,8 @@ public class Main {
             System.out.println("[5] - Lançar resultado de venda");
             System.out.println("[6] - Lançar taxa de serviço");
             System.out.println("[7] - Editar dados do empregado");
-            System.out.println("[8] - Rodar folha de pagamento (em desenvolvimento...)");
-            System.out.println("[9] - Imprimir lista de pagamentos");
+            System.out.println("[8] - Rodar folha de pagamento");
+            System.out.println("[9] - Imprimir listas dos pagamentos");
             System.out.println("[10] - Mudar agenda de pagamento");
             System.out.println("[11] - Sair\n");
 
@@ -67,14 +67,14 @@ public class Main {
             }
             else if(option == 8){
                 if(!employees.isEmpty()){
-                    paymentLists.add(PaymentsControl.payroll(input, employees));
+                    paymentsLists.add(PaymentsControl.payroll(input, employees));
                 }else{
                     System.out.println("Não há empregados cadastrados!");
                 }
             }
             else if(option == 9){
                 System.out.println("\n----Relatório com as listas dos pagamentos----\n");
-                System.out.println(paymentLists);
+                System.out.println(paymentsLists);
             }
             else if(option == 10){
                 EmployeeControl.editEmployeeSchedule(input, employees, paymentSchedules);
