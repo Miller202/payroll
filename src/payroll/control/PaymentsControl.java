@@ -93,4 +93,44 @@ public class PaymentsControl {
         return paymentSchedules;
     }
 
+    public static PaymentSchedule createPaymentSchedule(Scanner input){
+        System.out.println("Escolha um tipo de agenda para criar:");
+        System.out.println("[1] - Mensal\n[2] - Semanal\n[3] - Bisemanal");
+        int choice = input.nextInt();
+
+        if(choice == 1){
+            System.out.println("Escolha o dia do mês da agenda (de 1 a 28):");
+            int day = input.nextInt();
+
+            if(day>0 && day<29){
+                return new PaymentSchedule(day, null, "Mensal");
+            }else{
+                return new PaymentSchedule(null, null, "Mensal");
+            }
+        }else{
+            System.out.println("Escolha o dia da semana:");
+            System.out.println("[1] - Segunda\n[2] - Terça\n[3] - Quarta\n[4] - Quinta\n[5] - Sexta");
+            int week = input.nextInt();
+            DayOfWeek weekDay = DayOfWeek.of(week);
+
+            if(choice == 2){
+                if(week>0 && week<6){
+                    return new PaymentSchedule(null, weekDay, "Semanal");
+                }else{
+                    return new PaymentSchedule(null, DayOfWeek.FRIDAY, "Semanal");
+                }
+            }
+            else if(choice == 3){
+                if(week>0 && week<6){
+                    return new PaymentSchedule(null, weekDay, "Bisemanal");
+                }else{
+                    return new PaymentSchedule(null, DayOfWeek.FRIDAY, "Bisemanal");
+                }
+            }else{
+                System.out.println("Opção inválida, por padrão foi criada uma agenda mensal");
+                return new PaymentSchedule(null, null, "Mensal");
+            }
+        }
+    }
+
 }

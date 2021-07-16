@@ -89,7 +89,7 @@ public class ServicesControl {
         Employee employeeToPost = null;
         for(Employee employee : syndicateList){
             if(employee.getId().toString().equals(id)){
-                employeeToPost = (Employee) employee;
+                employeeToPost = employee;
             }
         }
 

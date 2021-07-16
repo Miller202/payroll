@@ -22,7 +22,7 @@ public class Main {
 
         int option = 0;
 
-        while(option != 11){
+        while(option != 12){
             System.out.println("\nFolha de pagamento");
             System.out.println("Escolha uma das opções: ");
             System.out.println("[1] - Cadastrar empregado");
@@ -34,8 +34,9 @@ public class Main {
             System.out.println("[7] - Editar dados do empregado");
             System.out.println("[8] - Rodar folha de pagamento");
             System.out.println("[9] - Imprimir listas dos pagamentos");
-            System.out.println("[10] - Mudar agenda de pagamento");
-            System.out.println("[11] - Sair\n");
+            System.out.println("[10] - Mudar agenda de pagamentos");
+            System.out.println("[11] - Registrar nova agenda de pagamentos");
+            System.out.println("[12] - Sair\n");
 
             option = input.nextInt();
             input.nextLine();
@@ -78,6 +79,11 @@ public class Main {
             }
             else if(option == 10){
                 EmployeeControl.editEmployeeSchedule(input, employees, paymentSchedules);
+                System.out.println("Operação realizada com sucesso!");
+            }
+            else if(option == 11){
+                paymentSchedules.add(PaymentsControl.createPaymentSchedule(input));
+                System.out.println("Operação realizada com sucesso!");
             }
         }
     }
