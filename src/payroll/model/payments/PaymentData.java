@@ -84,7 +84,7 @@ public class PaymentData {
                 ", Agencia: " + getAgency() +
                 ", Conta: " + getAccount() +
                 ", Método de pagamento: '" + getPaymentMethod() + '\'' +
-                ", Agenda: '" + getSchedule().toString() + '\'' +
+                ", \nAgenda: '" + getSchedule().toString() + '\'' +
                 '}';
     }
 }

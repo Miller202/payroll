@@ -42,7 +42,7 @@ public class PaymentSchedule {
 
     @Override
     public String toString() {
-        return "\nAgenda de pagamento{" +
+        return " Agenda de pagamento {" +
                 "Dia do mês: " + getMonthDay() +
                 ", Dia da semana: " + getWeekDay() +
                 ", Tipo de agenda: '" + getSchedule() + '\'' +

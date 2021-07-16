@@ -5,7 +5,6 @@ import payroll.model.employee.*;
 import payroll.model.payments.PaymentData;
 import payroll.model.payments.PaymentSchedule;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
@@ -286,19 +285,24 @@ public class EmployeeControl {
         for(Employee employee : Employees){
             if(employee.getId().toString().equals(id)){
                 foundEmp = true;
-                System.out.println("\n-Escolha uma das agendas para receber seu salário-");
-                System.out.println("\n[1] Mensalmente");
-                System.out.println("\n[2] Semanalmente (Toda sexta-feira)");
-                System.out.println("\n[3] Bisemanalmente");
+                int counter = 0;
+
+                StringBuilder str = new StringBuilder("\n-Escolha uma das agendas para receber seu salário-\n");
+                for(PaymentSchedule p : paymentSchedules){
+                    str.append('[').append(counter).append(']').append(p.toString()).append('\n');
+                    counter +=1;
+                }
+                System.out.println(str);
 
                 int choice = input.nextInt();
-                if(choice == 1){
-                    employee.getPaymentData().setSchedule(paymentSchedules.get(0));
-                }else if(choice == 2){
-                    employee.getPaymentData().setSchedule(paymentSchedules.get(1));
-                }else if(choice == 3){
-                    employee.getPaymentData().setSchedule(paymentSchedules.get(2));
+
+                if(choice <= counter && choice >= 0){
+                    employee.getPaymentData().setSchedule(paymentSchedules.get(choice));
+                    System.out.println("Agenda atualizada!\n");
+                }else{
+                    System.out.println("Opção inválida");
                 }
+
             }
         }
 
