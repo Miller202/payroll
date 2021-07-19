@@ -14,32 +14,32 @@ import java.util.stream.Collectors;
 
 public class Hourly extends Employee {
 
-    private Double HourlySalary;
+    private Double hourlySalary;
 
-    ArrayList<TimeCard> timeCards;
+    private ArrayList<TimeCard> timeCards;
 
     public Hourly(){
 
     }
 
     public Hourly(Double hourlySalary){
-        this.HourlySalary = hourlySalary;
+        this.hourlySalary = hourlySalary;
         this.timeCards = new ArrayList<TimeCard>();
     }
 
     public Hourly(UUID id, String name, String address, Syndicate syndicate,
                   PaymentData paymentData, Double hourlySalary) {
         super(id, name, address, syndicate, paymentData);
-        HourlySalary = hourlySalary;
+        this.hourlySalary = hourlySalary;
         this.timeCards = new ArrayList<TimeCard>();
     }
 
     public Double getHourlySalary() {
-        return HourlySalary;
+        return hourlySalary;
     }
 
     public void setHourlySalary(Double hourlySalary) {
-        HourlySalary = hourlySalary;
+        this.hourlySalary = hourlySalary;
     }
 
     public ArrayList<TimeCard> getTimeCards() {
