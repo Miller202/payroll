@@ -94,7 +94,7 @@ public class ServicesControl {
         }
 
         if(employeeToPost == null){
-            System.out.println("Empregado não pertence ao sindicato!");
+            System.out.println("Empregado não encontrado na lista de membros do sindicato!");
         }else{
             System.out.println("Digite o valor da taxa de serviço:");
             Double value = input.nextDouble();

@@ -45,7 +45,11 @@ public class Main {
                 employees.add(EmployeeControl.register(input, paymentSchedules));
             }
             else if(option == 2){
-                EmployeeControl.removeEmployee(input, employees);
+                if(!employees.isEmpty()){
+                    EmployeeControl.removeEmployee(input, employees);
+                }else{
+                    System.out.println("Não há empregados cadastrados!");
+                }
             }
             else if(option == 3){
                 if(!employees.isEmpty()){

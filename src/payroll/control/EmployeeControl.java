@@ -104,8 +104,13 @@ public class EmployeeControl {
                 employeeToRemove = employee;
             }
         }
-        Employees.remove(employeeToRemove);
-        System.out.println("Empregado removido com sucesso!");
+
+        if(employeeToRemove == null){
+            System.out.println("Empregado não foi encontrado!");
+        }else{
+            Employees.remove(employeeToRemove);
+            System.out.println("Empregado removido com sucesso!");
+        }
     }
 
     public static void listEmployees(ArrayList<Employee> Employees) {
