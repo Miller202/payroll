@@ -21,9 +21,9 @@ public class PaymentsControl {
         PaymentList paymentList = null;
         ArrayList<PayCheck> payCheckList = new ArrayList<>();
 
-        System.out.println("\nDigite a primeira data do mês referente ao pagamento: ");
+        System.out.println("\nDigite a data do primeiro dia do mês: ");
         LocalDate firstDate = GeneralUtils.readData(input);
-        System.out.println("\nDigite a última data do mês referente ao pagamento: ");
+        System.out.println("\nDigite a data do último dia do mês: ");
         LocalDate lastDate = GeneralUtils.readData(input);
 
         long size = ChronoUnit.DAYS.between(firstDate, lastDate.plusDays(1));
@@ -99,7 +99,7 @@ public class PaymentsControl {
         int choice = input.nextInt();
 
         if(choice == 1){
-            System.out.println("Escolha o dia do mês da agenda (de 1 a 28):");
+            System.out.println("Escolha o dia do mês da agenda:");
             int day = input.nextInt();
 
             if(day>0 && day<29){
