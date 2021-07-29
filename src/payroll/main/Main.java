@@ -59,16 +59,32 @@ public class Main {
                 }
             }
             else if(option == 4){
-                ServicesControl.postTimeCard(input, employees);
+                if(!employees.isEmpty()){
+                    ServicesControl.postTimeCard(input, employees);
+                }else{
+                    System.out.println("Não há empregados cadastrados!");
+                }
             }
             else if(option == 5){
-                ServicesControl.postSaleResult(input, employees);
+                if(!employees.isEmpty()){
+                    ServicesControl.postSaleResult(input, employees);
+                }else{
+                    System.out.println("Não há empregados cadastrados!");
+                }
             }
             else if(option == 6){
-                ServicesControl.postServiceTax(input, employees);
+                if(!employees.isEmpty()){
+                    ServicesControl.postServiceTax(input, employees);
+                }else{
+                    System.out.println("Não há empregados cadastrados!");
+                }
             }
             else if(option == 7){
-                EmployeeControl.editEmployee(input, employees);
+                if(!employees.isEmpty()){
+                    EmployeeControl.editEmployee(input, employees);
+                }else{
+                    System.out.println("Não há empregados cadastrados!");
+                }
             }
             else if(option == 8){
                 if(!employees.isEmpty()){
