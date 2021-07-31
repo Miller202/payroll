@@ -99,7 +99,7 @@ public class PaymentsControl {
         int choice = input.nextInt();
 
         if(choice == 1){
-            System.out.println("Escolha o dia do mês da agenda:");
+            System.out.println("Escolha o dia do pagamento da agenda (de 1 a 28):");
             int day = input.nextInt();
 
             if(day>0 && day<29){
