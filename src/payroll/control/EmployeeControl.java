@@ -102,13 +102,13 @@ public class EmployeeControl {
         for(Employee employee : Employees){
             if(employee.getId().toString().equals(id)){
                 employeeToRemove = employee;
+                Employees.remove(employee);
             }
         }
 
         if(employeeToRemove == null){
             System.out.println("Empregado não foi encontrado!");
         }else{
-            Employees.remove(employeeToRemove);
             System.out.println("Empregado removido com sucesso!");
         }
     }
