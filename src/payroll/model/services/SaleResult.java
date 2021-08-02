@@ -1,8 +1,9 @@
 package payroll.model.services;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class SaleResult {
+public class SaleResult implements Serializable {
 
     public Double value;
 

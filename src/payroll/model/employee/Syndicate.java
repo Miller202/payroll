@@ -2,10 +2,11 @@ package payroll.model.employee;
 
 import payroll.model.services.ServiceTax;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class Syndicate {
+public class Syndicate implements Serializable {
 
     private UUID id;
 

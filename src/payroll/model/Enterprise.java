@@ -5,9 +5,10 @@ import payroll.model.employee.Employee;
 import payroll.model.payments.PaymentList;
 import payroll.model.payments.PaymentSchedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Enterprise {
+public class Enterprise implements Serializable {
 
     private ArrayList<Employee> employees;
 

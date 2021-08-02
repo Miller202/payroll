@@ -4,6 +4,7 @@ import payroll.model.payments.PayCheck;
 import payroll.model.payments.PaymentData;
 import payroll.model.services.ServiceTax;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -11,7 +12,7 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toCollection;
 
-public abstract class Employee {
+public abstract class Employee implements Serializable {
 
     private UUID id;
 

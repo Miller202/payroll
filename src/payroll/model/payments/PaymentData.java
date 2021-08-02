@@ -1,8 +1,9 @@
 package payroll.model.payments;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PaymentData {
+public class PaymentData implements Serializable {
 
     private int bank;
 

@@ -1,9 +1,10 @@
 package payroll.model.services;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class TimeCard {
+public class TimeCard implements Serializable {
 
     public LocalDate date;
 

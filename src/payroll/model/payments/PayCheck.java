@@ -2,9 +2,10 @@ package payroll.model.payments;
 
 import payroll.model.employee.Employee;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PayCheck {
+public class PayCheck implements Serializable {
 
     private Employee employee;
 
