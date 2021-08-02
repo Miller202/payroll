@@ -11,6 +11,8 @@ public class Main {
 
     public static void main(String[] args){
 
+        Enterprise enterprise = new Enterprise();
+
         ArrayList<Employee> employees = new ArrayList<>();
         ArrayList<PaymentList> paymentsLists = new ArrayList<>();
         ArrayList<PaymentSchedule> paymentSchedules = PaymentsControl.startSchedules();
