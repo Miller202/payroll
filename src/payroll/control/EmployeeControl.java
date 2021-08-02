@@ -94,15 +94,15 @@ public class EmployeeControl {
         return employee;
     }
 
-    public static void removeEmployee(Scanner input, ArrayList<Employee> Employees){
+    public static void removeEmployee(Scanner input, ArrayList<Employee> employees){
         System.out.println("Digite o ID do empregado que deve ser removido:");
         String id = input.nextLine();
 
         Employee employeeToRemove = null;
-        for(Employee employee : Employees){
+        for(Employee employee : employees){
             if(employee.getId().toString().equals(id)){
                 employeeToRemove = employee;
-                Employees.remove(employee);
+                employees.remove(employee);
             }
         }
 
@@ -113,10 +113,10 @@ public class EmployeeControl {
         }
     }
 
-    public static void listEmployees(ArrayList<Employee> Employees) {
+    public static void listEmployees(ArrayList<Employee> employees) {
         int i = 1;
         System.out.println("\n\nListagem de empregados");
-        for (Employee employee : Employees) {
+        for (Employee employee : employees) {
             System.out.println("\nEmpregado #" + i);
             System.out.println(employee.toString());
             System.out.println("\n");
@@ -124,13 +124,13 @@ public class EmployeeControl {
         }
     }
 
-    public static void editEmployee(Scanner input, ArrayList<Employee> Employees){
+    public static void editEmployee(Scanner input, ArrayList<Employee> employees){
 
         System.out.println("\nDigite o ID do empregado:");
         String id = input.nextLine();
 
         Employee employeeToEdit = null;
-        for(Employee employee : Employees){
+        for(Employee employee : employees){
             if(employee.getId().toString().equals(id)){
                 employeeToEdit = employee;
             }
@@ -153,7 +153,7 @@ public class EmployeeControl {
             if(option == 1){
                 System.out.println("Digite o novo nome: ");
                 String name = input.nextLine();
-                for(Employee employee : Employees){
+                for(Employee employee : employees){
                     if(employee.getId().toString().equals(id)){
                         employee.setName(name);
                     }
@@ -163,7 +163,7 @@ public class EmployeeControl {
             else if(option == 2){
                 System.out.println("Digite o novo endereço: ");
                 String address = input.nextLine();
-                for(Employee employee : Employees){
+                for(Employee employee : employees){
                     if(employee.getId().toString().equals(id)){
                         employee.setAddress(address);
                     }
@@ -175,7 +175,7 @@ public class EmployeeControl {
                 System.out.println("[1] - Horista, [2] - Salariado, [3] - Comissionado");
                 int type = input.nextInt();
 
-                for(Employee employee : Employees){
+                for(Employee employee : employees){
                     if(employee.getId().toString().equals(id)){
                         Employee newEmployee = null;
                         if(type == 1){
@@ -210,8 +210,8 @@ public class EmployeeControl {
                             System.out.println("Opção inválida!");
                         }
 
-                        Employees.remove(employee);
-                        Employees.add(newEmployee);
+                        employees.remove(employee);
+                        employees.add(newEmployee);
                         System.out.println("\nTipo de empregado editado com sucesso!");
                     }
                 }
@@ -219,7 +219,7 @@ public class EmployeeControl {
             else if(option == 4){
                 String payMethod = GeneralUtils.readPayMethod(input);
 
-                for(Employee employee : Employees){
+                for(Employee employee : employees){
                     if(employee.getId().toString().equals(id)){
                         employee.getPaymentData().setPaymentMethod(payMethod);
                     }
@@ -227,7 +227,7 @@ public class EmployeeControl {
                 System.out.println("Método de pagamento atualizado!");
             }
             else if(option == 5){
-                for(Employee employee : Employees){
+                for(Employee employee : employees){
                     if(employee.getId().toString().equals(id)){
                         if(employee.getSyndicate() == null){
                             System.out.println("Empregado não pertence ao sindicato, deseja cadastrar?");
@@ -261,7 +261,7 @@ public class EmployeeControl {
                 System.out.println("Operação realizada com sucesso!");
             }
             else if(option == 6){
-                for(Employee employee : Employees){
+                for(Employee employee : employees){
                     if(employee.getId().toString().equals(id)){
                         if(employee.getSyndicate() == null){
                             System.out.println("Empregado não pertence ao sindicato");
@@ -281,13 +281,13 @@ public class EmployeeControl {
 
     }
 
-    public static void editEmployeeSchedule(Scanner input, ArrayList<Employee> Employees,
+    public static void editEmployeeSchedule(Scanner input, ArrayList<Employee> employees,
                                             ArrayList<PaymentSchedule> paymentSchedules){
         System.out.println("\nDigite o ID do empregado:");
         String id = input.nextLine();
 
         Boolean foundEmp = null;
-        for(Employee employee : Employees){
+        for(Employee employee : employees){
             if(employee.getId().toString().equals(id)){
                 foundEmp = true;
                 int counter = 0;
