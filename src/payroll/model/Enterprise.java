@@ -1,10 +1,17 @@
 package payroll.model;
 
+import payroll.control.PaymentsControl;
+import payroll.model.employee.Employee;
+import payroll.model.payments.PaymentList;
+import payroll.model.payments.PaymentSchedule;
+
+import java.util.ArrayList;
+
 public class Enterprise {
 
     private ArrayList<Employee> employees;
 
-    private ArrayList<PaymentList> paymentsLists;
+    private final ArrayList<PaymentList> paymentsLists;
 
     private ArrayList<PaymentSchedule> paymentSchedules;
 
@@ -23,16 +30,8 @@ public class Enterprise {
         this.employees = employees;
     }
 
-    public void addEmployee(Employee employee) {
-        this.employees.add(employee);
-    }
-
     public ArrayList<PaymentList> getPaymentsLists() {
         return paymentsLists;
-    }
-
-    public void setPaymentsLists(ArrayList<PaymentList> paymentLists) {
-        this.paymentsLists = paymentsLists;
     }
 
     public ArrayList<PaymentSchedule> getPaymentSchedules() {

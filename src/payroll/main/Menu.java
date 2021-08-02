@@ -3,17 +3,13 @@ package payroll.main;
 import payroll.control.EmployeeControl;
 import payroll.control.PaymentsControl;
 import payroll.control.ServicesControl;
-import payroll.model.employee.Employee;
-import payroll.model.payments.PaymentList;
-import payroll.model.payments.PaymentSchedule;
+import payroll.model.Enterprise;
 
 import java.time.DateTimeException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-    public static void menu(ArrayList<Employee> employees, ArrayList<PaymentList> paymentsLists,
-                                ArrayList<PaymentSchedule> paymentSchedules){
+    public static void menu(Enterprise enterprise){
 
         Scanner input = new Scanner(System.in);
 
@@ -40,76 +36,76 @@ public class Menu {
                 input.nextLine();
 
                 if(option == 1){
-                    employees.add(EmployeeControl.register(input, paymentSchedules));
+                    enterprise.getEmployees().add(EmployeeControl.register(input, enterprise.getPaymentSchedules()));
                 }
                 else if(option == 2){
-                    if(!employees.isEmpty()){
-                        EmployeeControl.removeEmployee(input, employees);
+                    if(!enterprise.getEmployees().isEmpty()){
+                        EmployeeControl.removeEmployee(input, enterprise.getEmployees());
                     }else{
                         System.out.println("Não há empregados cadastrados!");
                     }
                 }
                 else if(option == 3){
-                    if(!employees.isEmpty()){
-                        EmployeeControl.listEmployees(employees);
+                    if(!enterprise.getEmployees().isEmpty()){
+                        EmployeeControl.listEmployees(enterprise.getEmployees());
                     }else{
                         System.out.println("Não há empregados cadastrados!");
                     }
                 }
                 else if(option == 4){
-                    if(!employees.isEmpty()){
-                        ServicesControl.postTimeCard(input, employees);
+                    if(!enterprise.getEmployees().isEmpty()){
+                        ServicesControl.postTimeCard(input, enterprise.getEmployees());
                     }else{
                         System.out.println("Não há empregados cadastrados!");
                     }
                 }
                 else if(option == 5){
-                    if(!employees.isEmpty()){
-                        ServicesControl.postSaleResult(input, employees);
+                    if(!enterprise.getEmployees().isEmpty()){
+                        ServicesControl.postSaleResult(input, enterprise.getEmployees());
                     }else{
                         System.out.println("Não há empregados cadastrados!");
                     }
                 }
                 else if(option == 6){
-                    if(!employees.isEmpty()){
-                        ServicesControl.postServiceTax(input, employees);
+                    if(!enterprise.getEmployees().isEmpty()){
+                        ServicesControl.postServiceTax(input, enterprise.getEmployees());
                     }else{
                         System.out.println("Não há empregados cadastrados!");
                     }
                 }
                 else if(option == 7){
-                    if(!employees.isEmpty()){
-                        EmployeeControl.editEmployee(input, employees);
+                    if(!enterprise.getEmployees().isEmpty()){
+                        EmployeeControl.editEmployee(input, enterprise.getEmployees());
                     }else{
                         System.out.println("Não há empregados cadastrados!");
                     }
                 }
                 else if(option == 8){
-                    if(!employees.isEmpty()){
-                        paymentsLists.add(PaymentsControl.payroll(input, employees));
+                    if(!enterprise.getEmployees().isEmpty()){
+                        enterprise.getPaymentsLists().add(PaymentsControl.payroll(input, enterprise.getEmployees()));
                     }else{
                         System.out.println("Não há empregados cadastrados!");
                     }
                 }
                 else if(option == 9){
                     System.out.println("\n----Relatório com as listas dos pagamentos----\n");
-                    System.out.println(paymentsLists);
+                    System.out.println(enterprise.getPaymentsLists());
                 }
                 else if(option == 10){
-                    EmployeeControl.editEmployeeSchedule(input, employees, paymentSchedules);
+                    EmployeeControl.editEmployeeSchedule(input, enterprise.getEmployees(), enterprise.getPaymentSchedules());
                     System.out.println("Operação realizada com sucesso!");
                 }
                 else if(option == 11){
-                    paymentSchedules.add(PaymentsControl.createPaymentSchedule(input));
+                    enterprise.getPaymentSchedules().add(PaymentsControl.createPaymentSchedule(input));
                     System.out.println("Operação realizada com sucesso!");
                 }
             }
         }catch (DateTimeException | IndexOutOfBoundsException err){
             System.out.println("\nData inválida!\n");
-            menu(employees, paymentsLists, paymentSchedules);
+            menu(enterprise);
         } catch (NumberFormatException err){
             System.out.println("\nEntrada inválida!\n");
-            menu(employees, paymentsLists, paymentSchedules);
+            menu(enterprise);
         }
     }
 }

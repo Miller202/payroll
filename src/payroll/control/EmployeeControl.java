@@ -103,6 +103,7 @@ public class EmployeeControl {
             if(employee.getId().toString().equals(id)){
                 employeeToRemove = employee;
                 employees.remove(employee);
+                break;
             }
         }
 
